@@ -16,3 +16,28 @@ It will be / is released as an Android App, developed with React Native.
 ## Wireframe and design
 
 ![M'-Ton-Air Wireframe](doc/img/M'-Ton-Air-Wireframe.png)
+
+
+## Development
+
+Head over to the official [React Native Documentation](https://reactnative.dev/docs/environment-setup) in
+order to :
+
+- set up Android Studio,
+- set up an sdk,
+- set up a virtual device.
+
+Then go into the "MTonAir" folder and run :
+
+> npx react-native start
+
+(there's a [start.cmd](MTonAir/start.cmd) file for Windows users...).
+
+And finally, run :
+
+> npx react-native run-android
+
+in another command window.
+
+Then, the app should start in your virtual device. Press the R key twice or select `Reload` from the Developer Menu (`CTRL + M`) to see the changes.
+Read the [React Native Documentation](https://reactnative.dev/docs/environment-setup), "environment setup" section for any more help.
