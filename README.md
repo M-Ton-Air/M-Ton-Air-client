@@ -27,13 +27,19 @@ order to :
 - set up an sdk,
 - set up a virtual device.
 
-Then go into the "MTonAir" folder and run :
+
+
+Then, start your android emulator, go into the "MTonAir" folder and run :
 
 > npx react-native start
 
 (there's a [start.cmd](MTonAir/start.cmd) file for Windows users...).
 
 And finally, run :
+
+(in the MTonAir folder)
+
+> npm install
 
 > npx react-native run-android
 
