@@ -1,38 +1,25 @@
 import React from 'react';
-import { ImageBackground, StyleSheet, Text, View } from 'react-native';
+import { ImageBackground, Text, View} from 'react-native';
+import landingPageStyles from 'mta_styles/landingPageStyles.js'
+import {MtaLogo, AqiLogo} from 'mta_components';
 
-const image = '../../../assets/img/landing-page/background.png';
+const background = '../../../assets/img/landing-page/background.png';
+//const mta_logo = '../../../assets/img/m-ton-air.png';
 
 const LandingOne = () => 
 (
-<View style={styles.container}>
-    <ImageBackground source={require(image)} style={styles.image}>
-        <Text style={styles.welcomeText}>Welcome !</Text>
+
+<View style={landingPageStyles.container}>
+    <ImageBackground source={require(background)} style={landingPageStyles.bImg}>
+        <Text style={landingPageStyles.welcomeText}>Welcome !</Text>
+        <MtaLogo isWelcomePage={true}/>
+        <AqiLogo />
+        {/* //TODO : handle the text appearence : font size, titles, etc. + handle nav */}
+        <Text>Air Quality Indexes</Text>
+        <Text>Air Quality Indexes, all arouind the world. Know more</Text>
+        <Text>about the Air Quality around you.</Text>
     </ImageBackground>
 </View>
 );
-
-const styles = StyleSheet.create({
-    welcomeText:
-    {
-        color:'#0c59cf',
-        fontSize:30,
-        textAlign:'center',
-        backgroundColor: 'transparent',
-        paddingTop:'10%',
-        fontWeight: "bold",
-        //todo : drop shadow
-        /* TODO : drop shadow */
-
-    },
-    container: {
-      flex: 1,
-      flexDirection: "column"
-    },
-    image: {
-      flex: 1,
-      resizeMode: "cover"
-    }
-  });
 
 export default LandingOne;

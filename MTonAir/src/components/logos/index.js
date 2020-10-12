@@ -1,0 +1,1 @@
+export {default as MtaLogo} from './mta_logo';
