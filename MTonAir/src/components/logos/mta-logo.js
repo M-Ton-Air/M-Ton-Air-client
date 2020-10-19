@@ -1,6 +1,6 @@
 import React from 'react';
 import {Image} from 'react-native';
-import landingPageStyles from 'mta_styles/landingPageStyles.js'
+import landingPageStyles from 'mta_styles/landing-page-styles.js';
 
 const mta_logo = '../../assets/img/m-ton-air.png';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import {Image} from 'react-native';
-import landingPageStyles from 'mta_styles/landingPageStyles.js'
+import landingPageStyles from 'mta_styles/landing-page-styles.js';
 
 const aqi_logo = '../../assets/img/landing-page/landing-1-aqi.png';
 
