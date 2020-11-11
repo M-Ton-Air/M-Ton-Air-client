@@ -33,16 +33,25 @@ export default StyleSheet.create({
         height:100,
         width:200,
         alignSelf:'center',
-        marginTop:10
+        marginTop:10,
+        marginBottom:10
     },
     mtaLogoNonWelcomePage:
     {
-        height:300,
+        height:120,
         width:250,
         alignSelf:'center',
-        marginTop:10
+        marginTop:30,
+        marginBottom:10
     },
-    aqiLogo:
+    descriptiveLogo:
+    {
+        marginTop:75,
+        height:160,
+        width:160,
+        alignSelf:'center'
+    },
+    descriptiveDataLogo:
     {
         marginTop:75,
         height:160,
@@ -72,13 +81,6 @@ export default StyleSheet.create({
         marginTop:20,
         color:'#3d8af7'
     },
-    activeDot:
-    {
-        width:25,
-        height:25,
-        marginRight:6,
-        marginLeft:6
-    },
     horizontalView:
     {
         flex:1, 
@@ -87,18 +89,12 @@ export default StyleSheet.create({
         marginTop:50,
         height:30
     },
-    dot:
-    {
-        marginRight:5,
-        marginLeft:5,
-        marginTop:4
-    },
     signUpNow:
     {
         width:240,
         height:50,
         backgroundColor:'#2196f3',
-        marginBottom:35,
+        marginBottom:45,
         alignSelf:'center',
         borderRadius:5
     },
@@ -118,6 +114,5 @@ export default StyleSheet.create({
         paddingBottom:10,
         textAlign:"right",
         marginRight:10
-
     }
 });
