@@ -8,6 +8,8 @@ target 'MTonAir' do
 
   use_react_native!(:path => config["reactNativePath"])
 
+  pod 'RNCCheckbox', :path => '../node_modules/@react-native-community/checkbox'
+
   target 'MTonAirTests' do
     inherit! :complete
     # Pods for testing

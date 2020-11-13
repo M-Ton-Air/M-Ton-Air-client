@@ -1,4 +1,6 @@
+/* logos */
 export {default as MtaLogo} from './logos/mta-logo';
+export {default as MtaLogoXSmall} from './logos/mta-logo-xsmall';
 export {default as LandingLogo} from './logos/landing-logo';
 
 

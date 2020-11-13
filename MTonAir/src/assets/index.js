@@ -1,0 +1,1 @@
+export {default as StringResources} from './strings/strings';

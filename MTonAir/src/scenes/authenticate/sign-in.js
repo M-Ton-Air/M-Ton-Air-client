@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text } from 'react-native';
 
-//TODO : Implement sign IN page
+//TODO : Implement sign IN page (2auth and existing account)
 
 const SignIn = ({navigation}) => 
 (

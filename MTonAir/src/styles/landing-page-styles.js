@@ -70,13 +70,13 @@ export default StyleSheet.create({
         textShadowOffset:
         {
             width: 0,
-            height: 2
+            height: 1
         }
     },
     featureText:
     {
         fontFamily:'Product-Sans-Regular',
-        fontSize:14,
+        fontSize:16,
         textAlign:'center',
         marginTop:20,
         color:'#3d8af7'
