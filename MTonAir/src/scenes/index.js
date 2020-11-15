@@ -7,3 +7,7 @@ export {default as LandingWrapper} from './landing-pages/landing-wrapper';
 export {default as SignIn} from './authenticate/sign-in';
 export {default as SignUp} from './authenticate/sign-up';
 
+/* legal mentions */
+export {default as TermsOfUse} from './legal/terms-of-use';
+export {default as PrivacyPolicy} from './legal/privacy-policy';
+

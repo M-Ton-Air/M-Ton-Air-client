@@ -11,7 +11,7 @@ export default StyleSheet.create({
         height:50,
         width:100,
         alignSelf:'center',
-        marginTop:10,
+        marginTop:30,
         marginBottom:10
     },
     textInputGlobal :
@@ -28,10 +28,26 @@ export default StyleSheet.create({
     },
     firstTextInput:
     {
-        marginTop:65,
+        marginTop:45,
     },
     textInput:
     {
         marginTop:25,
+    },
+    termsWrapper:
+    {
+        flexDirection:'row',
+        marginTop:30,
+        marginLeft:30,
+    },
+    termsText:
+    {
+        marginLeft:5,
+        fontFamily:'Product-Sans-Regular'
+    },
+    hyperLink:
+    {
+        color:'#83a2df',
+        textDecorationLine:'underline'
     }
 })

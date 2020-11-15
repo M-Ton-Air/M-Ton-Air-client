@@ -5,14 +5,8 @@ import signInUpStyles from 'mta_styles/sign-in-up-styles.js';
 import {StringResources as SR} from 'mta_assets/index'
 import CheckBox from '@react-native-community/checkbox';
 
-//TODO : Implement sign up page
-
-
-
-
 const SignUp = ({navigation}) =>
 {
-    let checkBoxState = false;
     const inputElementRef = React.useRef(null);
 
     // https://github.com/facebook/react-native/issues/30123#issuecomment-721667936
@@ -54,11 +48,28 @@ const SignUp = ({navigation}) =>
                 placeholder={SR.signUpPasswordPlaceHolder()}/>
 
             {/* Terms of Use and Privacy Policy */}
-            <CheckBox
-                disabled={false}
-                value={toggleCheckBox}
-                onValueChange={(newValue) => setToggleCheckBox(newValue)}/>
+            <View style={signInUpStyles.termsWrapper}>
 
+                <CheckBox
+                    disabled={false}
+                    value={toggleCheckBox}
+                    onValueChange={(newValue) => setToggleCheckBox(newValue)}/>
+
+                <Text style={signInUpStyles.termsText}>
+                    I agree with M' Ton Air {' '}
+                    <Text style={signInUpStyles.hyperLink}
+                            onPress={() => navigation.navigate('TermsOfUse')}>
+                        Terms of Use 
+                    </Text>
+                    {' '} and {'\n'}
+                    <Text style={signInUpStyles.hyperLink}
+                            onPress={() => navigation.navigate('PrivacyPolicy')}>
+                        Privacy policy
+                    </Text>
+                </Text>
+            </View>
+
+            {/* //TODO */}
             {/* Create my account button */}
 
             {/* Sign in with google button */}

@@ -1,5 +1,5 @@
 {
-  "name": "MTonAir",
+  "name": "mtoanir",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -24,6 +24,7 @@
     "react-native-safe-area-view": "^1.1.1",
     "react-native-screens": "^2.14.0",
     "react-native-tab-view": "^2.15.2",
+    "react-native-view-pdf": "^0.11.0",
     "react-navigation": "4.0.0",
     "react-navigation-stack": "1.5.3"
   },
