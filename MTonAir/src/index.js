@@ -1,6 +1,12 @@
 import React from 'react';
 import 'react-native-gesture-handler';
-import { LandingWrapper, SignIn, SignUp, TermsOfUse, PrivacyPolicy } from 'mta_scenes/index';
+
+
+import { LandingWrapper } from 'mta_scenes/index';
+import { SignIn, SignUp, SignInWithGoogle} from 'mta_scenes/index';
+import { TermsOfUse, PrivacyPolicy } from 'mta_scenes/index'
+
+
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -18,6 +24,7 @@ const MTonAirApp = () =>
             {/* sign up & sign in pages */}
             <Stack.Screen name="SignUp" component={SignUp} options={{title:'Sign up'}}/>
             <Stack.Screen name="SignIn" component={SignIn} options={{title:'Sign in'}}/>
+            <Stack.Screen name="SignInWithGoogle" component={SignInWithGoogle} options={{title:'Google authentication'}}/>
 
             {/* legal mentions */}
             <Stack.Screen name="TermsOfUse" component={TermsOfUse} options={{title:'Terms of use'}}/>

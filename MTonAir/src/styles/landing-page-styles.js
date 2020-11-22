@@ -107,6 +107,25 @@ export default StyleSheet.create({
         fontSize:18,
         color:'#FFFFFF'
     },
+    createMyAccount:
+    {
+        width:240,
+        height:50,
+        backgroundColor:'#FFFFFF',
+        marginTop:20,
+        marginBottom:30,
+        alignSelf:'center',
+        borderRadius:5
+    },
+    createMyAccountText:
+    {
+        justifyContent:'center',
+        alignSelf:'center',
+        top:'30%',
+        fontFamily:'Product-Sans-Bold',
+        fontSize:18,
+        color:'#212121' 
+    },
     next:
     {
         color:'#FFFFFF',

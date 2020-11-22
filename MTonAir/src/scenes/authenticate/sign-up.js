@@ -1,18 +1,19 @@
 import React, {useEffect, useState } from 'react';
-import { Text, View, TextInput } from 'react-native';
-import {MtaLogoXSmall} from 'mta_components/index';
+import { Text, View, TextInput, TouchableNativeFeedback } from 'react-native';
+import {MtaLogoXSmall, SignUpButton, CreateAccountButton} from 'mta_components/index';
 import signInUpStyles from 'mta_styles/sign-in-up-styles.js';
 import {StringResources as SR} from 'mta_assets/index'
 import CheckBox from '@react-native-community/checkbox';
+import {UserEntity} from 'mta_models/index';
+
 
 const SignUp = ({navigation}) =>
 {
     const inputElementRef = React.useRef(null);
-
     // https://github.com/facebook/react-native/issues/30123#issuecomment-721667936
-    // there as issue (october 2020) in react-native that makes 
-    // text input font family property deleted.
+    // there as issue (october 2020) in react-native that makes  text input font family property deleted.
     // This occurs when changing the secureTextEntry
+
     React.useEffect( () => 
     {
         inputElementRef.current.setNativeProps(
@@ -24,6 +25,15 @@ const SignUp = ({navigation}) =>
     // https://github.com/react-native-checkbox/react-native-checkbox#example
     const [toggleCheckBox, setToggleCheckBox] = React.useState(false)
 
+    /**
+     * handles the user account creation
+     */
+    handleAccountCreation = () =>
+    {
+        console.log("Create account button was clicked from parent");
+        console.log(this.firstName);
+    }
+
     return(
         <View style={signInUpStyles.container}>
             <MtaLogoXSmall/>
@@ -31,7 +41,8 @@ const SignUp = ({navigation}) =>
             {/* First Name */}
             <TextInput 
                 style={[signInUpStyles.textInputGlobal, signInUpStyles.firstTextInput]}
-                placeholder={SR.signUpFirstNamePlaceholder()}/>
+                placeholder={SR.signUpFirstNamePlaceholder()}
+                onChangeText={(text) => this.firstName = text} />
             {/* Name */}
             <TextInput 
                 style={[signInUpStyles.textInputGlobal, signInUpStyles.textInput]}
@@ -72,8 +83,15 @@ const SignUp = ({navigation}) =>
             {/* //TODO */}
             {/* Create my account button */}
 
-            {/* Sign in with google button */}
+            <CreateAccountButton buttonText='Create my account'
+                callback={handleAccountCreation.bind(this)}/>
+            
 
+            {/* Sign in with google button */}
+            <SignUpButton style={signInUpStyles.signUpWithGoogleButton} 
+                buttonText='Sign in with google' 
+                nextPage='SignInWithGoogle' 
+                navigation={navigation}/>
             {/* Already have an account text */}
 
             {/* Skip account creation */}

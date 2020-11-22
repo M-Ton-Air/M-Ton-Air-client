@@ -18,7 +18,7 @@ const LandingGlobal = (props) =>
             {props.text}
         </Text>
         <View style={landingPageStyles.horizontalView}/>
-        <SignUpButton navigation={props.navigation} nextPage='SignUp'/>
+        <SignUpButton navigation={props.navigation} buttonText='Sign up now' nextPage='SignUp'/>
         <NextText navigation={props.navigation} nextPage={props.nextPage} isLast={props.isLast}/>
         
     </ImageBackground>
