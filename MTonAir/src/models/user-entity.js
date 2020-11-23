@@ -1,10 +1,19 @@
 export default class UserEntity
 {
-    constructor(name, firstName, email, password)
+    /**
+     * 
+     * @param {String} firstname 
+     * @param {String} name 
+     * @param {String} email 
+     * @param {String} password 
+     */
+    constructor(firstname, name, email, password)
     {
+        this.firstname = firstname;
         this.name = name;
-        this.firstName = firstName;
         this.email = email;
         this.password = password;
+        this.apiToken = null;
+        this.jwt = null;
     }
 }

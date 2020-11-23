@@ -23,7 +23,9 @@ const LandingOne = ({navigation}) =>
                 </Text>
                 <View style={landingPageStyles.horizontalView}/>
 
-                <SignUpButton navigation={navigation} buttonText='Sign up now' nextPage='SignUp'/>
+                <SignUpButton navigation={navigation} 
+                    buttonText='Sign up now' 
+                    nextPage='SignUp'/>
                 <NextText navigation={navigation} nextPage='LandingTwo'/>
                 
             </ImageBackground>

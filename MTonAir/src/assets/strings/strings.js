@@ -18,6 +18,11 @@ export default class StringResources
     'You can go on now and create an  account, that will\n' +
     'allow you to save cities. Otherwise, just skip this step !'; }
 
+    static grantLocationAccessText() { return 'In order to work properly, M\' Ton Air needs to have\n' +
+    'access to yor location. You can\'t use the app without\n' +
+    'granting access to location for now.'; }
+
+
     static signUpFirstNamePlaceholder() { return 'First Name'; }
 
     static signUpNamePlaceholder() { return 'Name'; }

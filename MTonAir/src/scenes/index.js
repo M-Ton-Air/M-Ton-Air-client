@@ -12,3 +12,8 @@ export {default as SignInWithGoogle} from './authenticate/sign-in-with-google'
 export {default as TermsOfUse} from './legal/terms-of-use';
 export {default as PrivacyPolicy} from './legal/privacy-policy';
 
+
+/* location */
+export {default as LocationAccess} from './main-scenes/location-access';
+
+/* main pages */

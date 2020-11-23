@@ -49,5 +49,16 @@ export default StyleSheet.create({
     {
         color:'#83a2df',
         textDecorationLine:'underline'
+    },
+    toast:
+    {
+        position:'absolute',
+        top:0
+    },
+    signInText:
+    {
+        color:'#2196f3',
+        fontFamily:'Product-Sans-Regular',
+        alignSelf:'center'
     }
 })

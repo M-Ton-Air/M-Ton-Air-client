@@ -94,7 +94,7 @@ export default StyleSheet.create({
         width:240,
         height:50,
         backgroundColor:'#2196f3',
-        marginBottom:45,
+        marginBottom:30,
         alignSelf:'center',
         borderRadius:5
     },
