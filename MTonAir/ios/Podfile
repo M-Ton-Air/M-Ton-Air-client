@@ -10,6 +10,8 @@ target 'MTonAir' do
 
   pod 'RNCCheckbox', :path => '../node_modules/@react-native-community/checkbox'
 
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
   target 'MTonAirTests' do
     inherit! :complete
     # Pods for testing

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ImageBackground, Text, View} from 'react-native';
+import { ImageBackground, Text, View, ScrollView} from 'react-native';
 import landingPageStyles from 'mta_styles/landing-page-styles.js';
 import {MtaLogo, LandingLogo, SignUpButton, NextText} from 'mta_components/index';
 

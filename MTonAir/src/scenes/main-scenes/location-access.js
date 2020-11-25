@@ -6,9 +6,24 @@ import { StringResources } from 'mta_assets/index';
 import locationStyles from 'mta_styles/location-access-styles';
 import { ButtonWithCallback } from 'mta_components/index'
 import Toast from 'react-native-toast-message';
+import { NavigationScreenProp } from 'react-navigation';
 
 const LocationAccess = ({route, navigation}) => 
 {
+
+    /**@type {NavigationScreenProp} */
+    const _navigation = navigation;
+
+
+    // prevents user from going back with his phone buttons
+    React.useEffect( () =>
+    {
+        navigation.addListener('beforeRemove', (e)  =>
+        {
+            e.preventDefault();
+        });
+    });
+
     /** @type {UserEntity} */
     const user = route.params.user;
 
@@ -19,8 +34,7 @@ const LocationAccess = ({route, navigation}) =>
         {
             if(allowed)
             {
-                // TODO
-                // redirect
+                _navigation.navigate("Home");
             }
         })
         try 
@@ -37,8 +51,7 @@ const LocationAccess = ({route, navigation}) =>
             });
             if (granted === PermissionsAndroid.RESULTS.GRANTED) 
             { 
-                //TODO
-                //redirect
+                _navigation.navigate("Home");
             } 
             else 
             {

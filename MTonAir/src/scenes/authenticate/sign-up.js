@@ -9,6 +9,10 @@ import Toast from 'react-native-toast-message';
 import { UserService } from 'mta_services/index';
 
 
+/**
+ * Component that handles all the sign up process. After signing up, the user will automatically be
+ * signed in to the app and redirected to the location-access page.
+ */
 const SignUp = ({navigation}) =>
 {
     const inputElementRef = React.useRef(null);
@@ -111,8 +115,8 @@ const SignUp = ({navigation}) =>
             let response = JSON.parse(data)
             if(parseInt(response.statusCode) == 200)
             {
-                //waits for 0.5s so that the user sees the displayed message.
-                await delay(0.5 * 1000);
+                //waits for 0.3s so that the user sees the displayed message.
+                await delay(0.3 * 1000);
                 userService.userEntity.apiToken = response.apiToken;
                 userService.userEntity.jwt = response.securityToken;
                 setIsViewLoading(false);

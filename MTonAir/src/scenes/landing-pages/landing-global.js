@@ -7,7 +7,7 @@ const background = '../../assets/img/landing-page/background.png';
 
 const LandingGlobal = (props) => 
 (
-    <View style={landingPageStyles.container}>
+<View style={landingPageStyles.container}>
     <ImageBackground source={require(background)} style={landingPageStyles.bImg}>
         <MtaLogo isWelcomePage={false}/>
         <LandingLogo pageNumber={props.pageNumber}/>

@@ -5,6 +5,10 @@ import {StringResources} from 'mta_assets/index';
 
 
 const Tab = createMaterialTopTabNavigator();
+
+/**
+ * Displays the main elements for the landing page, into a tab navigator
+ */
 const LandingWrapper = ({navigation}) =>
 (
     <Tab.Navigator

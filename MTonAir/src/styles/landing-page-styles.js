@@ -79,7 +79,9 @@ export default StyleSheet.create({
         fontSize:16,
         textAlign:'center',
         marginTop:20,
-        color:'#3d8af7'
+        color:'#3d8af7',
+        flex: 1, 
+        flexWrap: 'wrap'
     },
     horizontalView:
     {

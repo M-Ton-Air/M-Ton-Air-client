@@ -2,7 +2,7 @@ import React from 'react';
 import { View } from 'react-native'
 import 'react-native-gesture-handler';
 
-import { LandingWrapper } from 'mta_scenes/index';
+import { Home, LandingWrapper } from 'mta_scenes/index';
 import { SignIn, SignUp, SignInWithGoogle} from 'mta_scenes/index';
 import { TermsOfUse, PrivacyPolicy } from 'mta_scenes/index'
 import { LocationAccess } from 'mta_scenes/index';
@@ -37,6 +37,7 @@ const MTonAirApp = () =>
             <Stack.Screen name="LocationAccess" component={LocationAccess} options={{title:'Grant location access', headerShown:false}}/>
 
             {/* stack main screen wrapper -> contains all the app pages cf wireframe */}
+            <Stack.Screen name="Home" component={Home} options={{title:'Home', headerShown:false}}/>
 
 
         </Stack.Navigator>
