@@ -21,7 +21,6 @@ const LandingOne = ({navigation}) =>
                     Air Quality Indexes, all around the world. Know more {"\n"} 
                     about the Air Quality around you.
                 </Text>
-                <View style={landingPageStyles.horizontalView}/>
 
                 <SignUpButton navigation={navigation} 
                     buttonText='Sign up now' 

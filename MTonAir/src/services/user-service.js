@@ -23,25 +23,25 @@ const postWithoutJwt = (url, user, callback) =>
 
 export default class UserService
 {
-    /**
-     * 
-     * @param {UserEntity} userEntity 
-     */
-    constructor(userEntity)
-    {
-        this.userEntity = userEntity;
-    }
+    #userEntity
+
+    /** @param {UserEntity} userEntity */
+    constructor(userEntity){ this.#userEntity = userEntity; }
+
+    /** @returns {UserEntity} */
+    get userEntity(){ return this.#userEntity; }
 
     /**
-     * 
      * @param {Function} callback 
      */
     createAccount(callback)
     {
         postWithoutJwt(ServerConfig.host() + ServerEndpoints.signUp(), this.userEntity, callback);
-
     }
 
+    /**
+     * @param {Function} callback 
+     */
     login(callback)
     {
         postWithoutJwt(ServerConfig.host() + ServerEndpoints.signIn(), this.userEntity, callback);
@@ -101,6 +101,7 @@ export default class UserService
      */
     static isUserEntityOkForLogin(userEntity)
     {
+        // TODO
     }
 
     /**

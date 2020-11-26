@@ -26,7 +26,7 @@ const Home = ({navigation}) =>
         <Tab.Navigator
             tabBarPosition={'bottom'}
             initialRouteName="Map"
-            backBehavior='initialRoute'
+            backBehavior='none'
             tabBarOptions= 
             {{
                 labelStyle: 
@@ -55,48 +55,6 @@ const Home = ({navigation}) =>
                 return <Icon name='help' type='material' color={color}/>;
             }}}/>
         </Tab.Navigator>
-        // <Tab.Navigator
-        //     screenOptions={({ route }) => 
-        //     ({
-        //         tabBarIcon: ({ focused, color, size }) => 
-        //         {
-        //             let iconName;
-        //             let iconColor;
-        //             let type = 'material';
-        //             if(route.name === "Map")
-        //             {
-        //                 iconName = 'language';
-        //                 iconColor = focused ? lightBlue : grey;
-        //             }
-        //             else if(route.name === "Stations")
-        //             {
-        //                 iconName = 'map-pin';
-        //                 iconColor = focused ? lightBlue : grey;
-        //                 type = 'feather'
-        //             }
-        //             else if(route.name === "Guide")
-        //             {
-        //                 iconName = 'help';
-        //                 iconColor = focused ? lightBlue : grey;
-        //             }
-
-        //             return <Icon name={iconName} type={type} color={iconColor}/>
-        //         }
-        //     })}
-        //     tabBarOptions=
-        //     {{
-        //         activeTintColor: lightBlue,
-        //         inactiveTintColor: grey,
-        //         labelStyle:
-        //         {
-        //             fontFamily:'Product-Sans-Regular',
-        //             fontSize:13
-        //         }
-        //     }}>
-        //     <Tab.Screen name="Map" component={Map}/>
-        //     <Tab.Screen name="Stations" component={FavoriteStations}/>
-        //     <Tab.Screen name="Guide" component={Guide}/>
-        // </Tab.Navigator>
     );
 };
 

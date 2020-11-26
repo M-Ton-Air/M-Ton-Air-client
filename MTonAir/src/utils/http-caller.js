@@ -24,8 +24,10 @@ export default class HttpCaller
 
     /**
      * 
-     * @param {String}} url 
+     * @param {String} url 
      * @param {String} body 
+     * @param {String} jwt
+     * @param {Function} callback
      */
     static postWithJwt(url, body, jwt, callback)
     {
@@ -66,9 +68,6 @@ export default class HttpCaller
         {
             callback(data);
         })
-        .catch((error) => 
-        {
-            console.log(error);
-        });
+        .catch((error) => console.log(error));
     }
 }

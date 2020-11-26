@@ -7,6 +7,9 @@ import CheckBox from '@react-native-community/checkbox';
 import {UserEntity} from 'mta_models/index';
 import Toast from 'react-native-toast-message';
 import { UserService } from 'mta_services/index';
+import { Timeout } from 'mta_utils/index';
+import Spinner from 'react-native-loading-spinner-overlay';
+
 
 
 /**
@@ -59,15 +62,24 @@ const SignUp = ({navigation}) =>
             let isEverythingOk = UserService.isUserEntityOkForAccountCreation(user);
             if(typeof(isEverythingOk) == "boolean")
             {
+
                 if(isEverythingOk)
                 {
-                    setIsViewLoading(true);
-                    let userService = new UserService(user);
-                    userService.createAccount( (data) =>
+                    Timeout.timeout(5*1000, new Promise( () =>
                     {
-                        handleSignUpResponse(data, userService);
-                    });
+                        setIsViewLoading(true);
+                        let userService = new UserService(user);
+                        userService.createAccount( (data) =>
+                        {
+                            handleSignUpResponse(data, userService);
+                        });
+                    })).catch( (error) =>
+                    {
+                        setIsViewLoading(false);
+                        showToast('Woops.. 😕', 'Something went wrong : ' + error, 'error');
+                    })
                 }
+
             }
             else
             {
@@ -117,7 +129,7 @@ const SignUp = ({navigation}) =>
             {
                 //waits for 0.3s so that the user sees the displayed message.
                 await delay(0.3 * 1000);
-                userService.userEntity.apiToken = response.apiToken;
+                userService.userEntity.apiKey = response.apiToken;
                 userService.userEntity.jwt = response.securityToken;
                 setIsViewLoading(false);
 
@@ -155,6 +167,8 @@ const SignUp = ({navigation}) =>
 
     return(
         <View style={signInUpStyles.container} pointerEvents={isViewLoading ? 'none' : 'auto'}>
+            <Spinner
+                visible={isViewLoading}/>
             <View style={{zIndex:999 /* just so that the toast is above everything */}}>
                 <Toast ref={(ref) => Toast.setRef(ref)} />
             </View>

@@ -7,7 +7,7 @@ export default StyleSheet.create({
         fontSize:40,
         textAlign:'center',
         backgroundColor: 'transparent',
-        paddingTop:'10%',
+        paddingTop:10,
         textShadowColor: '#1464f6',
         textShadowOffset:
         {
