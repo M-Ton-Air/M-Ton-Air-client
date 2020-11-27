@@ -3,6 +3,12 @@ module.exports =
   root: true,
   plugins: ['import'],
   parser: "babel-eslint",
+  env:
+  {
+    commonjs: true,
+    es6: true,
+    node: true
+  },
   settings: 
   {
     node: 

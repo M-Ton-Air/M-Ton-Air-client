@@ -9,6 +9,7 @@ import Toast from 'react-native-toast-message';
 import { UserService } from 'mta_services/index';
 import { Timeout } from 'mta_utils/index';
 import Spinner from 'react-native-loading-spinner-overlay';
+import global from 'mta_utils/global';
 
 
 
@@ -57,7 +58,6 @@ const SignUp = ({navigation}) =>
     {
         if(toggleCheckBox)
         {
-           
             let user = new UserEntity(firstname, name, email, password);
             let isEverythingOk = UserService.isUserEntityOkForAccountCreation(user);
             if(typeof(isEverythingOk) == "boolean")
@@ -65,7 +65,7 @@ const SignUp = ({navigation}) =>
 
                 if(isEverythingOk)
                 {
-                    Timeout.timeout(5*1000, new Promise( () =>
+                    let process = Timeout.timeout(5*1000, new Promise( () =>
                     {
                         setIsViewLoading(true);
                         let userService = new UserService(user);
@@ -73,10 +73,14 @@ const SignUp = ({navigation}) =>
                         {
                             handleSignUpResponse(data, userService);
                         });
-                    })).catch( (error) =>
+                    }));
+                    process.catch( (error) =>
                     {
-                        setIsViewLoading(false);
-                        showToast('Woops.. 😕', 'Something went wrong : ' + error, 'error');
+                        if(isViewLoading)
+                        {
+                            setIsViewLoading(false);
+                            showToast('Woops.. 😕', 'Something went wrong : ' + error, 'error');
+                        }
                     })
                 }
 
@@ -120,7 +124,6 @@ const SignUp = ({navigation}) =>
      */
     const autoSignInUser = (userService) =>
     {
-        console.log(userService.userEntity);
         userService.login( async (data) =>
         {
             console.log(data);
@@ -131,13 +134,10 @@ const SignUp = ({navigation}) =>
                 await delay(0.3 * 1000);
                 userService.userEntity.apiKey = response.apiToken;
                 userService.userEntity.jwt = response.securityToken;
+                global.user = userService.userEntity;
                 setIsViewLoading(false);
-
                 //redirect user
-                navigation.navigate('LocationAccess', 
-                {
-                    user:userService.userEntity
-                });
+                navigation.navigate("LocationAccess")
             }
             else
             {

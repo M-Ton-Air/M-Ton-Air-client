@@ -1,19 +1,19 @@
 {
-    "compilerOptions": {
-      "jsx": "react",
-      "module": "commonjs",
-      "target": "es2017",
-      "allowSyntheticDefaultImports": true,
-      "baseUrl": ".",
-      "paths": {
-        "mta_assets/*":      ["./src/assets/*"],
-        "mta_components/*":  ["./src/components/*"],
-        "mta_scenes/*":      ["./src/scenes/*"],
-        "mta_services/*":    ["./src/services/*"],
-        "mta_styles/*":      ["./src/styles/*"],
-        "mta_utils/*":       ["./src/utils/*"],
-        "mta_models/*":      ["./src/models/*"]
-      }
-    },
-    "exclude": ["node_modules", "dist"]
-  }
+  "compilerOptions": {
+    "jsx": "react",
+    "module": "commonjs",
+    "target": "es2017",
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
+    "paths": {
+      "mta_assets/*":      ["./src/assets/*"],
+      "mta_components/*":  ["./src/components/*"],
+      "mta_scenes/*":      ["./src/scenes/*"],
+      "mta_services/*":    ["./src/services/*"],
+      "mta_styles/*":      ["./src/styles/*"],
+      "mta_utils/*":       ["./src/utils/*"],
+      "mta_models/*":      ["./src/models/*"]
+    }
+  },
+  "exclude": ["node_modules", "dist"]
+} 

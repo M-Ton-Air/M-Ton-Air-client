@@ -1,42 +1,41 @@
-import { UserEntity } from "mta_models/index";
-import { ServerConfig, ServerEndpoints } from "mta_assets/index"
-import { HttpCaller } from "mta_utils/index";
+import { UserEntity } from 'mta_models/index';
+import { ServerConfig, ServerEndpoints } from 'mta_assets/index';
+import { HttpCaller } from 'mta_utils/index';
 
 const minimalPasswordLength = 6;
 const maximalPasswordLength = 32;
 const maximalNamesLength = 50;
 
-/**
- * 
- * @param {String} url 
- * @param {UserEntity} user 
- * @param {Function} callback 
- */
-const postWithoutJwt = (url, user, callback) =>
-{
-    let body = JSON.stringify(user);
-    HttpCaller.postWithoutJwt(url, body, (data) => 
-    {
-        callback(data);
-    });
-}
 
 export default class UserService
 {
-    #userEntity
 
     /** @param {UserEntity} userEntity */
-    constructor(userEntity){ this.#userEntity = userEntity; }
-
-    /** @returns {UserEntity} */
-    get userEntity(){ return this.#userEntity; }
+    constructor(userEntity)
+    { 
+        this.userEntity = userEntity; 
+        /**
+         * 
+         * @param {String} url 
+         * @param {UserEntity} user 
+         * @param {Function} callback 
+         */
+        this.postWithoutJwt = (url, user, callback) =>
+        {
+            let body = JSON.stringify(user);
+            HttpCaller.postWithoutJwt(url, body, (data) => 
+            {
+                callback(data);
+            });
+        }
+    }
 
     /**
      * @param {Function} callback 
      */
     createAccount(callback)
     {
-        postWithoutJwt(ServerConfig.host() + ServerEndpoints.signUp(), this.userEntity, callback);
+        this.postWithoutJwt(ServerConfig.host() + ServerEndpoints.signUp(), this.userEntity, callback);
     }
 
     /**
@@ -44,7 +43,7 @@ export default class UserService
      */
     login(callback)
     {
-        postWithoutJwt(ServerConfig.host() + ServerEndpoints.signIn(), this.userEntity, callback);
+        this.postWithoutJwt(ServerConfig.host() + ServerEndpoints.signIn(), this.userEntity, callback);
     }
     
     /**

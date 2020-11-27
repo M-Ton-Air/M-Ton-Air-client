@@ -48,12 +48,11 @@ const MTonAirApp = () =>
 
             {/* stack main screen wrapper -> contains all the app pages cf wireframe */}
             {/* PROD */}
-            {/*<Stack.Screen name="Home" component={Home} options={{title:'Home', headerShown:false}}/> */}
+            {/* <Stack.Screen name="Home" component={Home} options={{title:'Home', headerShown:false}}/>  */}
 
 
         </Stack.Navigator>
     </NavigationContainer>
-
 
 );
 

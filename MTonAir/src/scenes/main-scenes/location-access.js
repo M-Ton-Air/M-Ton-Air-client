@@ -6,7 +6,8 @@ import { StringResources } from 'mta_assets/index';
 import locationStyles from 'mta_styles/location-access-styles';
 import { ButtonWithCallback } from 'mta_components/index'
 import Toast from 'react-native-toast-message';
-import { NavigationScreenProp } from 'react-navigation';
+import { NavigationScreenProp } from 'react-navigation'; 
+import global from 'mta_utils/global';
 
 const LocationAccess = ({route, navigation}) => 
 {
@@ -25,7 +26,9 @@ const LocationAccess = ({route, navigation}) =>
     });
 
     /** @type {UserEntity} */
-    const user = route.params.user;
+    //TODO RETRIEVE USER IN ANOTHER WAY + local storage
+    const user = global.user;
+    console.log(user);
 
     const handleGrantLocationAccess =  async () =>
     {
@@ -34,7 +37,7 @@ const LocationAccess = ({route, navigation}) =>
         {
             if(allowed)
             {
-                _navigation.navigate("Home");
+                navigation.navigate("Home");
             }
         })
         try 
@@ -51,7 +54,7 @@ const LocationAccess = ({route, navigation}) =>
             });
             if (granted === PermissionsAndroid.RESULTS.GRANTED) 
             { 
-                _navigation.navigate("Home");
+                navigation.navigate("Home");
             } 
             else 
             {

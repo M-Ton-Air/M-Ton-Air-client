@@ -1,5 +1,4 @@
 import React from 'react';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Map, FavoriteStations, Guide } from 'mta_scenes/index';
 import { Icon } from 'react-native-elements' 
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
@@ -14,9 +13,8 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
  * - Stations
  * - Guide
  */
-const Home = ({navigation}) => 
+const Home = () => 
 {
-    //const Tab = createBottomTabNavigator();
     const Tab = createMaterialTopTabNavigator();
 
     const lightBlue = '#1a96f8'
@@ -42,15 +40,15 @@ const Home = ({navigation}) =>
                 inactiveTintColor:  grey,
                 showIcon:true
             }}>
-            <Tab.Screen name="Map" component={Map} options= {{ tabBarIcon: ({focused, color}) =>
+            <Tab.Screen name="Map" component={Map} options={{ tabBarIcon: ({focused, color}) =>
             {
                 return <Icon name='language' type='material' color={color}/>;
             }}}/>
-            <Tab.Screen name="Stations" component={FavoriteStations} options= {{ tabBarIcon: ({focused, color}) =>
+            <Tab.Screen name="Stations" component={FavoriteStations} options={{ tabBarIcon: ({focused, color}) =>
             {
                 return <Icon name='map-pin' type='feather' color={color}/>;
             }}}/>
-            <Tab.Screen name="Guide" component={Guide}options= {{ tabBarIcon: ({focused, color}) =>
+            <Tab.Screen name="Guide" component={Guide}  options={{ tabBarIcon: ({focused, color}) =>
             {
                 return <Icon name='help' type='material' color={color}/>;
             }}}/>

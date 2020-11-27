@@ -7,7 +7,7 @@ export default class ServerConfig
      * of the machine on which the emulator runs.
      * See https://developer.android.com/studio/run/emulator-networking
      */
-    static host() { return 'http://10.0.2.2:8080/api/v1/'}
-    //static host() { return 'http://192.168.43.192:8080/api/v1/'}
+    //static host() { return 'http://10.0.2.2:8080/api/v1/'}
+    static host() { return 'http:/192.168.0.55:8080/api/v1/'}
 
 }
