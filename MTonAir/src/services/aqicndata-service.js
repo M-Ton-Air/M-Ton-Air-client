@@ -60,7 +60,6 @@ export default class AqicnDataService
                 latlng:
                 {
                     /////////// INTO OUR DATABASE, LAT / LONG ARE INVERTED ///////////
-                    // TODO //
                     latitude:station.longitude, 
                     longitude:station.latitude
                 },

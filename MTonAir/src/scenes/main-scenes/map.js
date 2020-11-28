@@ -63,7 +63,6 @@ const Map = ({ navigation}) =>
 
     const clustersRef = React.useRef();
 
-    //TODO
 // change cluster color according to contained markers (with an average)
 //https://github.com/venits/react-native-map-clustering/pull/152
 
@@ -144,28 +143,10 @@ const Map = ({ navigation}) =>
             if(isLoading)
             {
                 console.log(error);
-                ToastAndroid.showWithGravity('Can\'t fetch Aqicn data 😪', ToastAndroid.SHORT, ToastAndroid.CENTER);
+                // ToastAndroid.showWithGravity('Can\'t fetch Aqicn data 😪', ToastAndroid.SHORT, ToastAndroid.CENTER);
             }
         });
     }
-
-
-    // TODO : couleur des coordonnées et clusters
-    //TODO : mettre un loading (12s de loading environ)
-
-    const st = StyleSheet.create({
-        container: {
-          flex: 1,
-          justifyContent: "center"
-        },
-        horizontal: {
-          flexDirection: "row",
-          justifyContent: "space-around",
-          padding: 10
-        }
-      });
-      
-
 
     return(
         <View style={homeStyles.container}>
@@ -188,7 +169,6 @@ const Map = ({ navigation}) =>
                         />)) : false
                 }
             </MapView>
-
             <TouchableNativeFeedback onPress={centerToCurrentLocation}>
                 <View style={homeStyles.centerButton}>
                     <Icon 
