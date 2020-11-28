@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ToastAndroid, View, TouchableNativeFeedback } from 'react-native';
+import { ToastAndroid, View, TouchableNativeFeedback, ActivityIndicator, StyleSheet } from 'react-native';
 //import MapView, {Marker} from 'react-native-maps';
 import MapView from 'react-native-map-clustering';
 import { Marker } from 'react-native-maps'
@@ -34,7 +34,7 @@ global.user = new UserEntity
 "Test",
 "na@gmail.com",
 "123456789");
-global.user.jwt = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkb3JpYW5jZy5uYUBnbWFpbC5jb20iLCJleHAiOjE2MDY1MzUwOTYsImlhdCI6MTYwNjUxMzQ5Nn0.P7oAYsr8XH1VvrxLM6yficOuQfKUT2D0sTOW2bZhdVlIXK9rSd3SlJZsJkKbd2DQINfbVi5slrHhGsvneYcKCA";
+global.user.jwt = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkb3JpYW5jZy5uYUBnbWFpbC5jb20iLCJleHAiOjE2MDY1NDk5ODcsImlhdCI6MTYwNjUyODM4N30.1-hn-sJncswnO9ux9oZz33sq3JBNvjnpNec9JgiHQxlgB-cIgaiLjacgKuUyY5V-siOg6ooQVhIqn8RfrxKY2Q";
 ////////////////////////////////////////////// REMOVE IN PRODUCTION //////////////////////////////////////////////
 
 const Map = ({ navigation}) =>
@@ -57,7 +57,7 @@ const Map = ({ navigation}) =>
     /** @type {[aqicnMarkers, setAqicnMarkers]} */
     const [aqicnMarkers, setAqicnMarkers] = React.useState();
 
-    const [isLoading, setIsLoading] = React.useState(false);
+    const [isLoading, setIsLoading] = React.useState(true);
 
     const mapRef = React.useRef();
 
@@ -74,14 +74,8 @@ const Map = ({ navigation}) =>
     {
         setAqicnMarkers([]);
         centerToCurrentLocation();
-        new Promise( () =>
-        {
-            loadAllAqicnMarkersInMemory();
-        }).then( () =>
-        {
-            handleClusterColorCode();
-        });
-
+        loadAllAqicnMarkersInMemory();
+        setIsLoading(false);
     }, []);
 
     /**
@@ -123,10 +117,9 @@ const Map = ({ navigation}) =>
      */
     const loadAllAqicnMarkersInMemory = () =>
     {
-        setIsLoading(true);
         let service = new AqicnDataService(user.jwt)
 
-        let process = Timeout.timeout(10*1000, new Promise( () =>
+        let process = Timeout.timeout(30*1000, new Promise( () =>
         {
             service.getAllAqicnData(/** @param {Array<AqicnDataEntity>} data */ (data) =>
             {
@@ -156,18 +149,26 @@ const Map = ({ navigation}) =>
         });
     }
 
-    const handleClusterColorCode = () =>
-    {
-        console.log(clustersRef);
-    }
-
 
     // TODO : couleur des coordonnées et clusters
     //TODO : mettre un loading (12s de loading environ)
 
+    const st = StyleSheet.create({
+        container: {
+          flex: 1,
+          justifyContent: "center"
+        },
+        horizontal: {
+          flexDirection: "row",
+          justifyContent: "space-around",
+          padding: 10
+        }
+      });
+      
+
+
     return(
         <View style={homeStyles.container}>
-            {/* <Spinner visible={this.state.loading}/> */}
             <MapView 
                 ref={mapRef}
                 children={clustersRef}    
@@ -187,6 +188,7 @@ const Map = ({ navigation}) =>
                         />)) : false
                 }
             </MapView>
+
             <TouchableNativeFeedback onPress={centerToCurrentLocation}>
                 <View style={homeStyles.centerButton}>
                     <Icon 
@@ -198,7 +200,7 @@ const Map = ({ navigation}) =>
                 </View>
             </TouchableNativeFeedback>
         </View>
-    )
+    );
 }
 
 export default Map;

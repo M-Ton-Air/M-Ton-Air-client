@@ -13,12 +13,7 @@ const Guide = ({navigation}) =>
     const _navigation = navigation;
 
     return(
-        // <WebView>
-        //     source=
-        //     {{
-        //         uri: 'https://aqicn.org/scale/'
-        //     }}
-        // </WebView>
+        <WebView source= {{ uri : 'https://aqicn.org/scale/' }}/>
     );
 };
 

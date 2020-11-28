@@ -1,6 +1,6 @@
 export default class Colors
 {
-    static getGood() { return '#009966'; }
+    static getGood() { return '#00b386'; }
 
     static getModerate() { return '#ffde33'; }
 
