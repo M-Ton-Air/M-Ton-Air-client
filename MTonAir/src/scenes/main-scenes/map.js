@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ToastAndroid, View, TouchableNativeFeedback, ActivityIndicator, StyleSheet } from 'react-native';
+import { ToastAndroid, View, TouchableNativeFeedback, Text } from 'react-native';
 //import MapView, {Marker} from 'react-native-maps';
 import MapView from 'react-native-map-clustering';
 import { Marker } from 'react-native-maps'
@@ -32,9 +32,9 @@ const DEFAULT_REGION =
 global.user = new UserEntity
 ("Dorian",
 "Test",
-"na@gmail.com",
+"dorian.na@gmail.com",
 "123456789");
-global.user.jwt = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkb3JpYW5jZy5uYUBnbWFpbC5jb20iLCJleHAiOjE2MDY1NDk5ODcsImlhdCI6MTYwNjUyODM4N30.1-hn-sJncswnO9ux9oZz33sq3JBNvjnpNec9JgiHQxlgB-cIgaiLjacgKuUyY5V-siOg6ooQVhIqn8RfrxKY2Q";
+global.user.jwt = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkb3JpYW4ubmFAZ21haWwuY29tIiwiZXhwIjoxNjA2NjQ0MTMxLCJpYXQiOjE2MDY2MDA5MzF9.wYn2E_lzBIhjlGaD9pl7fYcFU-fRNSSiUFTpSE7RHKsnD2Y9RVOAJYgCyGO2cTLGAxcAJGUjgSC1G31yGMYbpw";
 ////////////////////////////////////////////// REMOVE IN PRODUCTION //////////////////////////////////////////////
 
 const Map = ({ navigation}) =>
@@ -59,8 +59,10 @@ const Map = ({ navigation}) =>
 
     const [isLoading, setIsLoading] = React.useState(true);
 
-    const mapRef = React.useRef();
+    const [stationDetails, setStationDetails] = React.useState();
 
+
+    const mapRef = React.useRef();
     const clustersRef = React.useRef();
 
 // change cluster color according to contained markers (with an average)
@@ -72,6 +74,7 @@ const Map = ({ navigation}) =>
     React.useEffect( () =>
     {
         setAqicnMarkers([]);
+        setStationDetails('');
         centerToCurrentLocation();
         loadAllAqicnMarkersInMemory();
         setIsLoading(false);
@@ -148,9 +151,18 @@ const Map = ({ navigation}) =>
         });
     }
 
+    const handleOnPressMarker = (marker) =>
+    {
+        console.log(marker)
+        // setShowStationDetailsCurrentMarker(marker);
+        setStationDetails(marker.id + ' ' + marker.title);
+        React.set
+    }
+
     return(
         <View style={homeStyles.container}>
             <MapView 
+                zoomTapEnabled={false}
                 ref={mapRef}
                 children={clustersRef}    
                 style={homeStyles.map}
@@ -160,15 +172,22 @@ const Map = ({ navigation}) =>
                 {
                     aqicnMarkers != null ?
                         aqicnMarkers.map( (marker, index ) => (
+                        // TODO : ON MARKER PRESS EVENT : DISPLAY WINDOW
                         <Marker
                             key={marker.id}
                             coordinate={marker.latlng}
                             title={marker.title}
                             description={marker.description}
                             pinColor={marker.color}
+                            onPress={e => handleOnPressMarker(marker)}
                         />)) : false
                 }
             </MapView>
+            <View>
+                <Text>
+                    {stationDetails}
+                </Text> 
+            </View>
             <TouchableNativeFeedback onPress={centerToCurrentLocation}>
                 <View style={homeStyles.centerButton}>
                     <Icon 

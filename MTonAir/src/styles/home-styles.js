@@ -24,5 +24,14 @@ export default StyleSheet.create({
       marginBottom:20,
       marginLeft:'auto',
       marginRight:20,
+    },
+    stationToolbox:
+    {
+      width:240,
+      height:50,
+      backgroundColor:'#2196f3',
+      marginBottom:30,
+      alignSelf:'center',
+      borderRadius:5
     }
-  });
+});
