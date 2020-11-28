@@ -34,7 +34,7 @@ global.user = new UserEntity
 "Test",
 "na@gmail.com",
 "123456789");
-global.user.jwt = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkb3JpYW5jZy5uYUBnbWFpbC5jb20iLCJleHAiOjE2MDY1MjAzMjAsImlhdCI6MTYwNjQ5ODcyMH0.c8Iz4mhDxo_Gdz_VIn-Azn59tq5WE8ZuWlyjOoUlcucoacishiIPYvAr77DoIxUjpqhNDTyzZc72zDI7UO1Y9Q";
+global.user.jwt = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkb3JpYW5jZy5uYUBnbWFpbC5jb20iLCJleHAiOjE2MDY1MzUwOTYsImlhdCI6MTYwNjUxMzQ5Nn0.P7oAYsr8XH1VvrxLM6yficOuQfKUT2D0sTOW2bZhdVlIXK9rSd3SlJZsJkKbd2DQINfbVi5slrHhGsvneYcKCA";
 ////////////////////////////////////////////// REMOVE IN PRODUCTION //////////////////////////////////////////////
 
 const Map = ({ navigation}) =>
@@ -61,6 +61,8 @@ const Map = ({ navigation}) =>
 
     const mapRef = React.useRef();
 
+    const clustersRef = React.useRef();
+
     //TODO
 // change cluster color according to contained markers (with an average)
 //https://github.com/venits/react-native-map-clustering/pull/152
@@ -72,7 +74,14 @@ const Map = ({ navigation}) =>
     {
         setAqicnMarkers([]);
         centerToCurrentLocation();
-        loadAllAqicnMarkersInMemory();
+        new Promise( () =>
+        {
+            loadAllAqicnMarkersInMemory();
+        }).then( () =>
+        {
+            handleClusterColorCode();
+        });
+
     }, []);
 
     /**
@@ -147,13 +156,21 @@ const Map = ({ navigation}) =>
         });
     }
 
+    const handleClusterColorCode = () =>
+    {
+        console.log(clustersRef);
+    }
+
 
     // TODO : couleur des coordonnées et clusters
+    //TODO : mettre un loading (12s de loading environ)
 
     return(
         <View style={homeStyles.container}>
             {/* <Spinner visible={this.state.loading}/> */}
-            <MapView ref={mapRef}
+            <MapView 
+                ref={mapRef}
+                children={clustersRef}    
                 style={homeStyles.map}
                 showsMyLocationButton={true}
                 showsUserLocation={true}

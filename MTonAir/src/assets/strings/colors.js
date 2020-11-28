@@ -1,16 +1,14 @@
 export default class Colors
 {
-    //TODO : COLORS
+    static getGood() { return '#009966'; }
 
-    static getGood() { return '#2eff43' }
+    static getModerate() { return '#ffde33'; }
 
-    static getModerate() { }
+    static getUnhealthyForSensitiveGroups() { return '#ff9933'; }
 
-    static getUnhealthyForSensitiveGroups() { }
+    static getUnhealthy() { return '#cc0033'; }
 
-    static getUnhealthy() { }
+    static getVeryUnhealthy() { return '#660099'; }
 
-    static getVeryUnhealthy() { }
-
-    static getHazardous() { }
+    static getHazardous() { return '#7e0023'; }
 }

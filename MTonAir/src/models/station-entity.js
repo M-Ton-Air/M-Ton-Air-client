@@ -1,6 +1,5 @@
 export default class StationEntity
 {
-
     /** @type{Number} */
     idStation;
     /** @type {String} */

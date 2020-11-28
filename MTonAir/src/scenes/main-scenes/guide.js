@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text } from 'react-native';
 import { NavigationScreenProp } from 'react-navigation';
+import {WebView} from 'react-native-webview';
 
 /**
  * Guide component that displays into a scrollview various elements
@@ -12,7 +13,12 @@ const Guide = ({navigation}) =>
     const _navigation = navigation;
 
     return(
-        <Text>Hello from guide page !</Text>
+        // <WebView>
+        //     source=
+        //     {{
+        //         uri: 'https://aqicn.org/scale/'
+        //     }}
+        // </WebView>
     );
 };
 

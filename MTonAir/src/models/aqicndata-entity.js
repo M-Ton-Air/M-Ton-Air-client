@@ -74,6 +74,35 @@ export default class AqicnDataEntity
      */
     static aqiToHexadecimalColor(airQuality)
     {
-        return Colors.getGood();
+        // 0 to 50
+        if(airQuality <= 50)
+        {
+            return Colors.getGood();
+        }
+        // 51 to 100
+        else if (airQuality <= 100)
+        {
+            return Colors.getModerate();
+        }
+        // 101 to 150
+        else if (airQuality <= 150)
+        {
+            return Colors.getUnhealthyForSensitiveGroups();
+        }
+        // 151 to 200
+        else if (airQuality <= 200)
+        {
+            return Colors.getUnhealthy();
+        }
+        // 201 to 300
+        else if (airQuality <= 300)
+        {
+            return Colors.getVeryUnhealthy();
+        }
+        // above 300
+        else if(airQuality > 300)
+        {
+            return Colors.getHazardous();
+        }
     }
 }
