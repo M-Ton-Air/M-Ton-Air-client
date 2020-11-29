@@ -32,6 +32,10 @@ export default class StringResources
     static signUpPasswordPlaceHolder() { return 'Password'; }
 
 
+    static guideTitle() { return 'Air Quality Index Scale and Color Legend'; }
+
+    static firstLine() { return 'The table below defines the Air Quality Index scale as defined by the US-EPA 2016 standard:'; }
+
     static healthImplicationsGoodPollution() { return 'Air quality is considered satisfactory, and air pollution poses little or no risk.'}
 
     static cautionaryStatementGoodPollution() { return 'None'}
@@ -56,8 +60,11 @@ export default class StringResources
 
     static cautionaryStatementHazardousPollution() { return 'Everyone should avoid all outdoor exertion' }
 
+    static additionalInformations() { return 'To know more about Air Quality and Pollution, check the wikipedia Air Quality topic or the airnow guide to Air Quality and Your Health' }
 
+    static urlWikipediaAirQualityTopic() { return 'https://en.wikipedia.org/wiki/Air_pollution' }
 
+    static urlAirnowGuideToAirQualityAndYourHealth() { return 'https://www.airnow.gov/aqi/aqi-basics/' } 
 
 }
 

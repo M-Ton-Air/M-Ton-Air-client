@@ -1,3 +1,5 @@
+
+
 export default class Colors
 {
     static getGood() { return '#00b386'; }
@@ -11,4 +13,5 @@ export default class Colors
     static getVeryUnhealthy() { return '#660099'; }
 
     static getHazardous() { return '#7e0023'; }
+
 }
