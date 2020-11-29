@@ -57,6 +57,7 @@ const StationToolbox = (props) =>
                             style={homeStyles.flag}
                             /*source={require((`../../assets/img/flags/${aqicnDataEntity.station.iso2}.png`))}*/
                              source={imgPaths[flagKey]}
+                             resizeMode='cover'
                         />
                         {' '} {aqicnDataEntity.station.stationName}
 

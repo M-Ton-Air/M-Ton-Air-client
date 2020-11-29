@@ -152,9 +152,19 @@ const Map = ({ navigation}) =>
         });
     }
 
+    const events = [];
 
     const simulatePress = (e) =>
     {
+         e.persist();
+         let ref = markersRef;
+         events[e.nativeEvent.id] = setInterval( () => ref[e.nativeEvent.id].showCallout(), 0);
+         setTimeout( () =>
+         {
+            clearInterval(events[e.nativeEvent.id]);
+         }, 800)
+         //clearInterval(events[e.nativeEvent.id]);
+        //e.stopPropagation();
         // markersRef[e.nativeEvent.id].onPress;
         // // for(let i = 0; i < 10; i++)
         // // {
@@ -189,6 +199,7 @@ const Map = ({ navigation}) =>
                             pinColor={AqicnDataEntity.aqiToHexadecimalColor(aqicnCurrentData.airQuality)}
                             onPress={(e) => simulatePress(e)}
                             ref={ (ref) => markersRef[aqicnCurrentData.station.idStation] = ref}
+                            tracksViewChanges={false}
                         >
                         <Callout tooltip onPress={() => addStationToFavorites(aqicnCurrentData.station.idStation)}>
                             <StationToolbox aqicnDataEntity={aqicnCurrentData} station={aqicnCurrentData.station}/>
