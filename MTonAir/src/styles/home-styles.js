@@ -54,6 +54,12 @@ export default StyleSheet.create({
       height:22,
       paddingBottom:5
     },
+    favFlag:
+    {
+      width:33,
+      height:22,
+      marginBottom:10
+    },
     toolBoxHeart:
     {
       alignItems:'flex-end',
@@ -70,5 +76,34 @@ export default StyleSheet.create({
       flexDirection:'row',
       marginTop:6,
       fontFamily:'Product-Sans-Regular'
-    }
+    },
+    noStationsTitle:
+    {
+      fontFamily:'Product-Sans-Bold',
+      marginTop:20,
+      fontSize:50,
+      textShadowOffset:
+      {
+          width: 0,
+          height: 2
+      },
+      color:'#3d8af7',
+      alignSelf:'center',
+      textAlign:'center',
+      opacity:0.4
+    },
+    favStationTitle:
+    {
+      fontFamily:'Product-Sans-Regular',
+      fontSize:18
+    },
+    favStationDetail:
+    {
+      fontFamily:'Product-Sans-Regular'
+    },
+    favAqiContainer:
+    {
+      marginTop:5, 
+      flexDirection:'row'
+    },
 });

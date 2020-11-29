@@ -139,7 +139,7 @@ const Map = ({ navigation}) =>
         {
             if(parseInt(data.statusCode) === 200)
             {
-                ToastAndroid.showWithGravity('Station added to your favorites 🎉', ToastAndroid.LONG, ToastAndroid.CENTER);
+                ToastAndroid.showWithGravity('Station added to your favorites 🎉', ToastAndroid.SHORT, ToastAndroid.CENTER);
             }
             else if(parseInt(data.statusCode) === 400)
             {

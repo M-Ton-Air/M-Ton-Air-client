@@ -1,11 +1,14 @@
 import { UserService } from 'mta_services/index';
 import React from 'react';
-import { Text } from 'react-native';
-import { ListItem } from 'react-native-elements';
-import { FlatList } from 'react-native-gesture-handler';
+import { View, Image, Text } from 'react-native';
+import { ListItem, Avatar } from 'react-native-elements';
 import { NavigationScreenProp } from 'react-navigation';
 import global from 'mta_utils/global';
 import { AqicnDataEntity } from 'mta_models/index';
+import imgPaths from 'mta_assets/img/img-paths';
+import { ScrollView } from 'react-native-gesture-handler';
+import homeStyles from 'mta_styles/home-styles';
+import { MtaLogo } from 'mta_components/';
 
 const FavoriteStations = ({navigation}) => 
 {
@@ -55,25 +58,101 @@ const FavoriteStations = ({navigation}) =>
         let newList = [];
         for(let i = 0; i < data.length; i++)
         {
+            /** @type {AqicnDataEntity} */
             let currentAqicnData = data[i];
             newList.push(
             {
                id:currentAqicnData.station.idStation,
                stationName:currentAqicnData.station.stationName,
                country:currentAqicnData.station.country,
-               flag_url:'../../../assets/img/flags/' + currentAqicnData.station.iso2 + '.png'
+               iso2:currentAqicnData.station.iso2,
+               aqi:currentAqicnData.airQuality,
+               aqi_word:AqicnDataEntity.aqiToText(currentAqicnData.airQuality),
+               aqi_color:AqicnDataEntity.aqiToHexadecimalColor(currentAqicnData.airQuality),
+               temp: currentAqicnData.temperature,
+               pm2_5: currentAqicnData.pm25,
+               humidity:currentAqicnData.humidity
             });
         }
-        setList(newList);
+        if(data.length != 0)
+        {
+            setList(newList);
+        }
     }
 
 
     return(
-        <FlatList>
-            <ListItem>
-                
-            </ListItem>
-        </FlatList>
+        <ScrollView>
+        {
+            list != null ?
+            list.map((l, i) =>(
+                <ListItem 
+                    key={i} 
+                    bottomDivider={true}>
+                    <ListItem.Content>
+                        <Image source={imgPaths['flag_' + l.iso2.toLowerCase()]}
+                            style={homeStyles.favFlag}
+                        />
+                        <ListItem.Title style={homeStyles.favStationTitle}>{l.stationName}{', '}{l.country}</ListItem.Title>
+                        <View style={homeStyles.favAqiContainer}>
+                        <Text style=
+                        {{
+                            backgroundColor:l.aqi_color,
+                            alignItems:'flex-start',
+                            width:40,
+                            fontFamily:'Product-Sans-Regular',
+                            textAlign:'center',
+                                alignContent:'center',
+                                alignItems:'center',
+                        }}>
+                            {l.aqi} 
+                            </Text>
+                            <Text style=
+                            {{
+                                color:l.aqi_color,
+                                fontFamily:'Product-Sans-Bold'
+                            }}>
+                            {'   '} {l.aqi_word}
+                            </Text>
+                            {
+                                l.temp != null ?
+                                <Text style={homeStyles.favStationDetail}>
+                                    {'   '} {l.temp + '°C'}
+                                </Text> : false
+                            }
+                            {
+                                isNaN(l.pm2_5) ?
+                                <Text style={homeStyles.favStationDetail}>
+                                    {'    '} {'pm25 : ' + l.pm25}
+                                </Text> : false
+                            }
+                            {
+                                l.humidity != null ?
+                                <Text style={homeStyles.favStationDetail}>
+                                    {'    '} {'humidity: ' + l.humidity + '%'}
+                                </Text> : false
+                            }
+                        </View>
+                    </ListItem.Content>
+                </ListItem>
+            )) :  
+            <View>
+                <Text style={homeStyles.noStationsTitle}>
+                    No stations yet
+                </Text>
+                <View style={{opacity:0.4}}>
+                    <MtaLogo/>
+                </View>
+            </View>
+        }
+        <View>
+        {/*// TODO : ADD BUTTON 'add a favorite station' THAT WILL OPEN THE SEARCH TAB */}
+            <Text>
+                MY BUTTON
+            </Text>
+        </View>
+        </ScrollView>
+
     );
 };
 
