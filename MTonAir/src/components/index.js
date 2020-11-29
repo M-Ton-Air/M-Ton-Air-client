@@ -9,3 +9,7 @@ export {default as LocationLogo} from './logos/location-logo';
 export {default as SignUpButton} from './landing/sign-up-button';
 export {default as ButtonWithCallback} from './landing/create-account-button';
 export {default as NextText} from './landing/next-text';
+
+
+/* main pages components */
+export {default as StationToolbox} from './home/station-toolbox';

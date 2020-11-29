@@ -105,4 +105,38 @@ export default class AqicnDataEntity
             return Colors.getHazardous();
         }
     }
+
+    static aqiToText(airQuality)
+    {
+        // 0 to 50
+        if(airQuality <= 50)
+        {
+            return'Good';
+        }
+        // 51 to 100
+        else if (airQuality <= 100)
+        {
+            return 'Moderate';
+        }
+        // 101 to 150
+        else if (airQuality <= 150)
+        {
+            return 'Unhealthy for some';
+        }
+        // 151 to 200
+        else if (airQuality <= 200)
+        {
+            return 'Unhealthy';
+        }
+        // 201 to 300
+        else if (airQuality <= 300)
+        {
+            return 'Very unhealthy';
+        }
+        // above 300
+        else if(airQuality > 300)
+        {
+            return 'Hazardous';
+        }
+    }
 }

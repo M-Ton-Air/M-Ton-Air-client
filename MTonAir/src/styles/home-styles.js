@@ -27,11 +27,54 @@ export default StyleSheet.create({
     },
     stationToolbox:
     {
-      width:240,
-      height:50,
-      backgroundColor:'#2196f3',
-      marginBottom:30,
-      alignSelf:'center',
-      borderRadius:5
+      // width:240,
+      // height:50,
+      // backgroundColor:'#2196f3',
+      // marginBottom:30,
+      // alignSelf:'center',
+      // borderRadius:5
+      backgroundColor:'#fff',
+      borderRadius:6,
+      borderColor:'#ccc',
+      borderWidth:0.5,
+      padding:3,
+      width:300,
+      height:70,
+      marginBottom:10
+    },
+    toolBoxFlagLocationHeart:
+    {
+      flexDirection:'row',
+    },
+    toolBoxStationDetails:
+    {
+      alignItems:'flex-start',
+      fontSize:14,
+      marginBottom:5,
+      fontFamily:'Product-Sans-Regular'
+    },
+
+    flag:
+    {
+      width:33,
+      height:22,
+      paddingBottom:5
+    },
+    toolBoxHeart:
+    {
+      alignItems:'flex-end',
+      marginLeft:'auto',
+      flexDirection:'row',
+    },
+    mTonAirHeart:
+    {
+      width:26,
+      height:26,
+    },
+    toolBoxAqiFavorite:
+    {
+      flexDirection:'row',
+      marginTop:6,
+      fontFamily:'Product-Sans-Regular'
     }
 });

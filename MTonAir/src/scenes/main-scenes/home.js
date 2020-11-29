@@ -23,7 +23,9 @@ const Home = () =>
     return(
         <Tab.Navigator
             tabBarPosition={'bottom'}
-            initialRouteName="Guide"
+            //TODO : PROD
+            /*initialRouteName="Guide"*/
+            initialRouteName="Map"
             backBehavior='none'
             tabBarOptions= 
             {{

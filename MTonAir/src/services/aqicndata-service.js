@@ -29,7 +29,7 @@ export default class AqicnDataService
         {
             //console.log(data[1]);
             let aqicnData = [];
-            for(let i = 0; i < data.length; i++)
+            for(let i = 0; i < /*data.length*/200; i++)
             {
                 /** @type {AqicnDataEntity} */
                 let aqicnDataEntity = data[i];
@@ -44,30 +44,32 @@ export default class AqicnDataService
         });
     }
 
-        /**
-     * initializes the markers array
-     * @param {Array<AqicnDataEntity>} data
-     */
-    getMarkersFromData(data)
-    {
-        let aqicnMarkers = []
-        for(let i = 0; i < data.length; i++)
-        {
-            let station = data[i].station;
-            aqicnMarkers.push(
-            {
-                id: station.idStation,
-                latlng:
-                {
-                    /////////// INTO OUR DATABASE, LAT / LONG ARE INVERTED ///////////
-                    latitude:station.longitude, 
-                    longitude:station.latitude
-                },
-                title:station.stationName + '. ' + 'AQI : ' + data[i].airQuality,
-                description:StationEntity.getConcatenatedCountryAndSubdivisions(station),
-                color:AqicnDataEntity.aqiToHexadecimalColor(data[i].airQuality)
-            });
-        }
-        return aqicnMarkers;
-    }
+    //     /**
+    //  * initializes the markers array
+    //  * @param {Array<AqicnDataEntity>} data
+    //  */
+    // getMarkersFromData(data)
+    // {
+    //     let aqicnMarkers = []
+    //     for(let i = 0; i < data.length; i++)
+    //     {
+    //         let station = data[i].station;
+    //         aqicnMarkers.push(
+    //         {
+    //             id: station.idStation,
+    //             latlng:
+    //             {
+    //                 /////////// INTO OUR DATABASE, LAT / LONG ARE INVERTED ///////////
+    //                 latitude:station.longitude, 
+    //                 longitude:station.latitude
+    //             },
+    //             subdivisions:StationEntity.getConcatenatedCountryAndSubdivisions(station),
+    //             color:AqicnDataEntity.aqiToHexadecimalColor(data[i].airQuality),
+    //             aqicnDataEntity:data[i],
+    //             stationEntity:station
+                
+    //         });
+    //     }
+    //     return aqicnMarkers;
+    // }
 }

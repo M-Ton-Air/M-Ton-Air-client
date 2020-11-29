@@ -1,17 +1,17 @@
-import React, { Component } from 'react';
-import { ToastAndroid, View, TouchableNativeFeedback, Text } from 'react-native';
+import React from 'react';
+import { ToastAndroid, View, Text, TouchableNativeFeedback } from 'react-native';
 //import MapView, {Marker} from 'react-native-maps';
 import MapView from 'react-native-map-clustering';
-import { Marker } from 'react-native-maps'
+import { Callout, Marker } from 'react-native-maps'
 import homeStyles from 'mta_styles/home-styles';
-import { AqicnDataEntity, StationEntity, UserEntity } from 'mta_models/index';
+import { AqicnDataEntity, UserEntity } from 'mta_models/index';
 import Geolocation from '@react-native-community/geolocation';
-import Spinner from 'react-native-loading-spinner-overlay';
 import { Icon } from 'react-native-elements';
 import global from 'mta_utils/global';
 import AqicnDataService from 'mta_services/aqicndata-service';
 import { Timeout } from 'mta_utils/index';
 import { NavigationScreenProp } from 'react-navigation';
+import { StationToolbox } from 'mta_components/index';
 
 const getCurrentLocation = () => {
     return new Promise((resolve, reject) => {
@@ -34,8 +34,9 @@ global.user = new UserEntity
 "Test",
 "dorian.na@gmail.com",
 "123456789");
-global.user.jwt = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkb3JpYW4ubmFAZ21haWwuY29tIiwiZXhwIjoxNjA2NjQ0MTMxLCJpYXQiOjE2MDY2MDA5MzF9.wYn2E_lzBIhjlGaD9pl7fYcFU-fRNSSiUFTpSE7RHKsnD2Y9RVOAJYgCyGO2cTLGAxcAJGUjgSC1G31yGMYbpw";
+global.user.jwt = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkb3JpYW4ubmFAZ21haWwuY29tIiwiZXhwIjoxNjA2Njk5Njk5LCJpYXQiOjE2MDY2NTY0OTl9.G8Q9W-9DYvvcWNrEU67_TXIqCz4oQakJFVEEhVKMwK8OjPT-x41fE2wBssdxfBVwzPa-dcy3VXkYPYQ5ZMPD3A";
 ////////////////////////////////////////////// REMOVE IN PRODUCTION //////////////////////////////////////////////
+
 
 const Map = ({ navigation}) =>
 {
@@ -50,17 +51,9 @@ const Map = ({ navigation}) =>
     /** @typedef {AqicnDataEntity} aqicnData array that holds all aqicnDataEntities */
     /** @typedef {Function} setAqicnData method that sets the array */
     /** @type {[aqicnData, setAqicnData]} */
-    const [aqicnData, setAqicnData] = React.useState();
-
-    /** @typedef {Array} aqicnMarkers array that holds all the markers */
-    /** @typedef {Function} setAqicnMarkers method that sets the array */
-    /** @type {[aqicnMarkers, setAqicnMarkers]} */
-    const [aqicnMarkers, setAqicnMarkers] = React.useState();
+    const [aqicnData, setAqicnData] = React.useState(null);
 
     const [isLoading, setIsLoading] = React.useState(true);
-
-    const [stationDetails, setStationDetails] = React.useState();
-
 
     const mapRef = React.useRef();
     const clustersRef = React.useRef();
@@ -73,8 +66,6 @@ const Map = ({ navigation}) =>
      */
     React.useEffect( () =>
     {
-        setAqicnMarkers([]);
-        setStationDetails('');
         centerToCurrentLocation();
         loadAllAqicnMarkersInMemory();
         setIsLoading(false);
@@ -128,9 +119,7 @@ const Map = ({ navigation}) =>
                 try
                 {
                     //callback executed if data were fetched from the server
-                    let markers = service.getMarkersFromData(data)
                     setAqicnData(data);
-                    setAqicnMarkers(markers);
                     setIsLoading(false);
                 }
                 catch(error)
@@ -151,43 +140,41 @@ const Map = ({ navigation}) =>
         });
     }
 
-    const handleOnPressMarker = (marker) =>
+    const addStationToFavorites = (idStation) =>
     {
-        console.log(marker)
-        // setShowStationDetailsCurrentMarker(marker);
-        setStationDetails(marker.id + ' ' + marker.title);
-        React.set
+        console.log('station n°', idStation);
     }
+
 
     return(
         <View style={homeStyles.container}>
             <MapView 
                 zoomTapEnabled={false}
                 ref={mapRef}
-                children={clustersRef}    
                 style={homeStyles.map}
                 showsMyLocationButton={true}
                 showsUserLocation={true}
                 initialRegion={DEFAULT_REGION}>
                 {
-                    aqicnMarkers != null ?
-                        aqicnMarkers.map( (marker, index ) => (
-                        // TODO : ON MARKER PRESS EVENT : DISPLAY WINDOW
+                    aqicnData != null ?
+                        aqicnData.map( (aqicnCurrentData, index ) => (
                         <Marker
-                            key={marker.id}
-                            coordinate={marker.latlng}
-                            title={marker.title}
-                            description={marker.description}
-                            pinColor={marker.color}
-                            onPress={e => handleOnPressMarker(marker)}
-                        />)) : false
+                            key={aqicnCurrentData.station.idStation}
+                            coordinate=
+                            {{
+                                // TODO INTO OUR DATABASE, LAT / LONG ARE INVERTED //
+                                latitude:aqicnCurrentData.station.longitude,
+                                longitude:aqicnCurrentData.station.latitude
+                            }}
+                            aqi={aqicnCurrentData.airQuality}
+                            pinColor={AqicnDataEntity.aqiToHexadecimalColor(aqicnCurrentData.airQuality)}
+                        >
+                        <Callout tooltip onPress={() => addStationToFavorites(aqicnCurrentData.station.idStation)}>
+                            <StationToolbox aqicnDataEntity={aqicnCurrentData} station={aqicnCurrentData.station}/>
+                        </Callout>
+                        </Marker>)) : false
                 }
             </MapView>
-            <View>
-                <Text>
-                    {stationDetails}
-                </Text> 
-            </View>
             <TouchableNativeFeedback onPress={centerToCurrentLocation}>
                 <View style={homeStyles.centerButton}>
                     <Icon 
@@ -203,3 +190,4 @@ const Map = ({ navigation}) =>
 }
 
 export default Map;
+
