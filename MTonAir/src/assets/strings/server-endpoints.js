@@ -17,17 +17,17 @@ export default class ServerEndpoints
 
     /* Favorites */
     /** @param {Number} idUser the user id */
-    static getFavoriteStations(idUser){return 'users/' + idUser + '/favorite-stations';}
+    static getFavoriteStationsData(idUser){return 'users/' + idUser + '/favorite-station';}
     /** 
      * @param {Number} idUser the user id
      * @param {Number} idStation  the station id
      */
-    static addFavoriteStation(idUser, idStation){ return 'users/' + idUser + '/favorite-stations/' + idStation + '/add' ;}
+    static addFavoriteStation(idUser, idStation){ return 'users/' + idUser + '/favorite-station/' + idStation + '/add' ;}
     /** 
      * @param {Number} idUser the user id
      * @param {Number} idStation  the station id
      */
-    static deleteFavoriteStation(idUser, idStation){ return 'users/' + idUser + '/favorite-stations/' + idStation + '/delete' ;}
+    static deleteFavoriteStation(idUser, idStation){ return 'users/' + idUser + '/favorite-station/' + idStation + '/delete' ;}
 
 
     /* AQICN data */

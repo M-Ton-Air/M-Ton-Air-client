@@ -9,6 +9,7 @@ export default class UserEntity
      */
     constructor(firstname, name, email, password)
     {
+        this.id = null;
         this.firstname = firstname;
         this.name = name;
         this.email = email;

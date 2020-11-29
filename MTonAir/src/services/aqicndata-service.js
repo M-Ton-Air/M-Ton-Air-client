@@ -29,6 +29,7 @@ export default class AqicnDataService
         {
             //console.log(data[1]);
             let aqicnData = [];
+            // TODO : PROD : REMOVE LIMIT
             for(let i = 0; i < /*data.length*/200; i++)
             {
                 /** @type {AqicnDataEntity} */
@@ -43,33 +44,4 @@ export default class AqicnDataService
             callback(aqicnData);
         });
     }
-
-    //     /**
-    //  * initializes the markers array
-    //  * @param {Array<AqicnDataEntity>} data
-    //  */
-    // getMarkersFromData(data)
-    // {
-    //     let aqicnMarkers = []
-    //     for(let i = 0; i < data.length; i++)
-    //     {
-    //         let station = data[i].station;
-    //         aqicnMarkers.push(
-    //         {
-    //             id: station.idStation,
-    //             latlng:
-    //             {
-    //                 /////////// INTO OUR DATABASE, LAT / LONG ARE INVERTED ///////////
-    //                 latitude:station.longitude, 
-    //                 longitude:station.latitude
-    //             },
-    //             subdivisions:StationEntity.getConcatenatedCountryAndSubdivisions(station),
-    //             color:AqicnDataEntity.aqiToHexadecimalColor(data[i].airQuality),
-    //             aqicnDataEntity:data[i],
-    //             stationEntity:station
-                
-    //         });
-    //     }
-    //     return aqicnMarkers;
-    // }
 }

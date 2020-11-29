@@ -134,6 +134,7 @@ const SignUp = ({navigation}) =>
                 await delay(0.3 * 1000);
                 userService.userEntity.apiKey = response.apiToken;
                 userService.userEntity.jwt = response.securityToken;
+                userService.userEntity.id = response.userId;
                 global.user = userService.userEntity;
                 setIsViewLoading(false);
                 //redirect user

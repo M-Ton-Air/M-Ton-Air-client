@@ -2,6 +2,8 @@ import React from 'react';
 import { Map, FavoriteStations, Guide } from 'mta_scenes/index';
 import { Icon } from 'react-native-elements' 
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import global from 'mta_utils/global';
+import {UserEntity} from 'mta_models/index'
 
 /**
  * The home component is a wrapper for
@@ -13,6 +15,19 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
  * - Stations
  * - Guide
  */
+
+ ////////////////////////////////////////////// REMOVE IN PRODUCTION //////////////////////////////////////////////
+////////////////////////////////////////////// REMOVE IN PRODUCTION //////////////////////////////////////////////
+ // MOCK {//TODO : REMOVE IN PROD}
+global.user = new UserEntity
+("Dorian",
+"Test",
+"dorian.na@gmail.com",
+"123456789");
+global.user.jwt = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkb3JpYW4ubmFAZ21haWwuY29tIiwiZXhwIjoxNjA2NzA5MTgzLCJpYXQiOjE2MDY2NjU5ODN9.dpCCskQoUB7Tu2IyDiI9MqUJb0vnzcy_4I_T2ROJHljhvlSK-wg_-x4OnwoVKnM9Mm1Z0L_sHpgZWClIHuBTmg";
+global.user.id = 111;
+
+
 const Home = () => 
 {
     const Tab = createMaterialTopTabNavigator();
@@ -25,7 +40,7 @@ const Home = () =>
             tabBarPosition={'bottom'}
             //TODO : PROD
             /*initialRouteName="Guide"*/
-            initialRouteName="Map"
+            initialRouteName="Stations"
             backBehavior='none'
             tabBarOptions= 
             {{

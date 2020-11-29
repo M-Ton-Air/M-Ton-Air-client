@@ -8,7 +8,7 @@ import { AqicnDataEntity, UserEntity } from 'mta_models/index';
 import Geolocation from '@react-native-community/geolocation';
 import { Icon } from 'react-native-elements';
 import global from 'mta_utils/global';
-import AqicnDataService from 'mta_services/aqicndata-service';
+import {AqicnDataService, UserService} from 'mta_services/index';
 import { Timeout } from 'mta_utils/index';
 import { NavigationScreenProp } from 'react-navigation';
 import { StationToolbox } from 'mta_components/index';
@@ -27,17 +27,6 @@ const DEFAULT_REGION =
     longitudeDelta:70
 };
 
-////////////////////////////////////////////// REMOVE IN PRODUCTION //////////////////////////////////////////////
-// MOCK {//TODO : REMOVE IN PROD}
-global.user = new UserEntity
-("Dorian",
-"Test",
-"dorian.na@gmail.com",
-"123456789");
-global.user.jwt = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkb3JpYW4ubmFAZ21haWwuY29tIiwiZXhwIjoxNjA2Njk5Njk5LCJpYXQiOjE2MDY2NTY0OTl9.G8Q9W-9DYvvcWNrEU67_TXIqCz4oQakJFVEEhVKMwK8OjPT-x41fE2wBssdxfBVwzPa-dcy3VXkYPYQ5ZMPD3A";
-////////////////////////////////////////////// REMOVE IN PRODUCTION //////////////////////////////////////////////
-
-
 const Map = ({ navigation}) =>
 {
     /* properties */
@@ -48,7 +37,7 @@ const Map = ({ navigation}) =>
     /** @type {UserEntity} user */
     const user = global.user;
 
-    /** @typedef {AqicnDataEntity} aqicnData array that holds all aqicnDataEntities */
+    /** @typedef {Array<AqicnDataEntity>} aqicnData array that holds all aqicnDataEntities */
     /** @typedef {Function} setAqicnData method that sets the array */
     /** @type {[aqicnData, setAqicnData]} */
     const [aqicnData, setAqicnData] = React.useState(null);
@@ -57,6 +46,9 @@ const Map = ({ navigation}) =>
 
     const mapRef = React.useRef();
     const clustersRef = React.useRef();
+
+    /** @type {Array<Marker>} */
+    let markersRef = [];
 
 // change cluster color according to contained markers (with an average)
 //https://github.com/venits/react-native-map-clustering/pull/152
@@ -140,11 +132,37 @@ const Map = ({ navigation}) =>
         });
     }
 
-    const addStationToFavorites = (idStation) =>
+    const addStationToFavorites = (stationId) =>
     {
-        console.log('station n°', idStation);
+        let service = new UserService(global.user);
+        service.addToFavorite(stationId, (data) =>
+        {
+            if(parseInt(data.statusCode) === 200)
+            {
+                ToastAndroid.showWithGravity('Station added to your favorites 🎉', ToastAndroid.LONG, ToastAndroid.CENTER);
+            }
+            else if(parseInt(data.statusCode) === 400)
+            {
+                ToastAndroid.showWithGravity('The station is already into your favorites 😉', ToastAndroid.LONG, ToastAndroid.CENTER)
+            }
+            else
+            {
+                ToastAndroid.showWithGravity('Something went wrong 😪', ToastAndroid.LONG, ToastAndroid.CENTER); 
+            }
+        });
     }
 
+
+    const simulatePress = (e) =>
+    {
+        // markersRef[e.nativeEvent.id].onPress;
+        // // for(let i = 0; i < 10; i++)
+        // // {
+        // //     console.log(e.nativeEvent.id);
+        // //     markersRef[e.nativeEvent.id].hideCallout();
+        // //     markersRef[e.nativeEvent.id].showCallout();
+        // // }
+    }
 
     return(
         <View style={homeStyles.container}>
@@ -160,6 +178,7 @@ const Map = ({ navigation}) =>
                         aqicnData.map( (aqicnCurrentData, index ) => (
                         <Marker
                             key={aqicnCurrentData.station.idStation}
+                            identifier={String(aqicnCurrentData.station.idStation)}
                             coordinate=
                             {{
                                 // TODO INTO OUR DATABASE, LAT / LONG ARE INVERTED //
@@ -168,6 +187,8 @@ const Map = ({ navigation}) =>
                             }}
                             aqi={aqicnCurrentData.airQuality}
                             pinColor={AqicnDataEntity.aqiToHexadecimalColor(aqicnCurrentData.airQuality)}
+                            onPress={(e) => simulatePress(e)}
+                            ref={ (ref) => markersRef[aqicnCurrentData.station.idStation] = ref}
                         >
                         <Callout tooltip onPress={() => addStationToFavorites(aqicnCurrentData.station.idStation)}>
                             <StationToolbox aqicnDataEntity={aqicnCurrentData} station={aqicnCurrentData.station}/>

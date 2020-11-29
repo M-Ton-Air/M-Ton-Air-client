@@ -3,6 +3,8 @@ export default class HttpCaller
     /**
      * 
      * @param {String} url 
+     * @param {String} jwt 
+     * @param {Function} callback 
      */
     static get(url, jwt, callback)
     {
@@ -19,7 +21,7 @@ export default class HttpCaller
         {
             callback(data);
         })
-        .catch((error) => console.log(error));
+        .catch((error) => console.warn(error));
     }
 
     /**
@@ -45,7 +47,7 @@ export default class HttpCaller
         {
             callback(data);
         })
-        .catch((error) => console.log(error));
+        .catch((error) => console.warn(error));
     }
 
     /**
@@ -68,6 +70,6 @@ export default class HttpCaller
         {
             callback(data);
         })
-        .catch((error) => console.log(error));
+        .catch((error) => console.warn(error));
     }
 }

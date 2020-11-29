@@ -27,12 +27,6 @@ export default StyleSheet.create({
     },
     stationToolbox:
     {
-      // width:240,
-      // height:50,
-      // backgroundColor:'#2196f3',
-      // marginBottom:30,
-      // alignSelf:'center',
-      // borderRadius:5
       backgroundColor:'#fff',
       borderRadius:6,
       borderColor:'#ccc',

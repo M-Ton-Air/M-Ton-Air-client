@@ -2,6 +2,7 @@ import React from 'react';
 import {Text, View, Image, TouchableNativeFeedback} from 'react-native';
 import { AqicnDataEntity } from 'mta_models/index'
 import homeStyles from 'mta_styles/home-styles';
+import imgPaths from 'mta_assets/img/img-paths';
 
 
 const StationToolbox = (props) =>
@@ -11,6 +12,8 @@ const StationToolbox = (props) =>
 
     const aqiColor = AqicnDataEntity.aqiToHexadecimalColor(aqicnDataEntity.airQuality);
     const aqiText = AqicnDataEntity.aqiToText(aqicnDataEntity.airQuality);
+
+    const flagKey = 'flag_' + aqicnDataEntity.station.iso2.toLowerCase();
 
 
     const getRandomEmoji = () =>
@@ -48,11 +51,12 @@ const StationToolbox = (props) =>
         <View>
             <View style={homeStyles.stationToolbox}>
                 <View style={homeStyles.toolBoxFlagLocationHeart}>
-                    {/* yes, an image wrapped into a Text */}
+                    {/* yes, an image wrapped into a Text, because of react native bugs */}
                     <Text style={homeStyles.toolBoxStationDetails}>
                         <Image
                             style={homeStyles.flag}
-                            source={require('../../assets/img/flags/us.png')}
+                            /*source={require((`../../assets/img/flags/${aqicnDataEntity.station.iso2}.png`))}*/
+                             source={imgPaths[flagKey]}
                         />
                         {' '} {aqicnDataEntity.station.stationName}
 

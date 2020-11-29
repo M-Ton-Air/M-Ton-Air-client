@@ -1,4 +1,4 @@
-import { UserEntity } from 'mta_models/index';
+import { AqicnDataEntity, UserEntity } from 'mta_models/index';
 import { ServerConfig, ServerEndpoints } from 'mta_assets/index';
 import { HttpCaller } from 'mta_utils/index';
 
@@ -44,6 +44,39 @@ export default class UserService
     login(callback)
     {
         this.postWithoutJwt(ServerConfig.host() + ServerEndpoints.signIn(), this.userEntity, callback);
+    }
+
+    addToFavorite(stationId, callback)
+    {
+        let url = ServerConfig.host() + ServerEndpoints.addFavoriteStation(this.userEntity.id, stationId);
+        HttpCaller.postWithJwt(url, '', this.userEntity.jwt, callback);
+    }
+
+    /**
+     * 
+     * @param {Function} callback. The callback function that needs one parameter : An array of AqicnDataEntities.
+     * @returns {Array<AqicnDataEntity>}
+     */
+    getFavoriteStations(callback)
+    {
+        let url = ServerConfig.host() + ServerEndpoints.getFavoriteStationsData(this.userEntity.id);
+        HttpCaller.get(url, this.userEntity.jwt, (data) =>
+        {
+            // TODO : REFACTOR WITH aqicndata-service.js 
+            /** @type {Array<AqicnDataEntity>} */
+            let aqicnData = [];
+            for(let i = 0; i < data.length; i++)
+            {
+                let aqicnDataEntity = data[i];
+                // removes the key 'stationByIdStation' to 'station'
+                delete Object.assign(aqicnDataEntity, {['station']: aqicnDataEntity['stationByIdStation'] })['stationByIdStation'];
+
+                //Removing 3 additional zeroes at the end because the m-ton-air server seems to return wrong timestamps
+                aqicnDataEntity.datetimeData = parseInt(aqicnDataEntity.datetimeData.toString().slice(0, 3));
+                aqicnData.push(aqicnDataEntity);
+            }
+            callback(aqicnData);
+        });
     }
     
     /**
