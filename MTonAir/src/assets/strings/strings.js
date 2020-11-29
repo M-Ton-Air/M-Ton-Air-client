@@ -30,5 +30,34 @@ export default class StringResources
     static signUpEmailPlaceholder() { return 'Email' }
 
     static signUpPasswordPlaceHolder() { return 'Password'; }
+
+
+    static healthImplicationsGoodPollution() { return 'Air quality is considered satisfactory, and air pollution poses little or no risk.'}
+
+    static cautionaryStatementGoodPollution() { return 'None'}
+
+    static healthImplicationsModeratePollution() { return 'Air quality is acceptable; however, for some pollutants there may be a moderate health concern for a very small number of people who are unusually sensitive to air pollution.'}
+
+    static cautionaryStatementModeratePollution() { return 'Active children and adults, and people with respiratory disease, such as asthma, should limit prolonged outdoor exertion.' }
+
+    static healthImplicationsUnhealthyForSGPollution() { return 'Members of sensitive groups may experience health effects. The general public is not likely to be affected.' }
+
+    static cautionaryStatementUnhealthyForSGPollution() { return 'Active children and adults, and people with respiratory disease, such as asthma, should limit prolonged outdoor exertion.' }
+
+    static healthImplicationsUnhealthyPollution() { return 'Everyone may begin to experience health effects; members of sensitive groups may experience more serious health effects.' }
+
+    static cautionaryStatementUnhealthyPollution() { return 'Active children and adults, and people with respiratory disease, such as asthma, should avoid prolonged outdoor exertion; everyone else, especially children, should limit prolonged outdoor exertion.' }
+
+    static healthImplicationsVeryUnhealthyPollution() { return 'Health warnings of emergency conditions. The entire population is more likely to be affected.' }
+
+    static cautionaryStatementVeryUnhealthyPollution() { return 'Active children and adults, and people with respiratory disease, such as asthma, should avoid all outdoor exertion; everyone else, especially children, should limit outdoor exertion.' }
+
+    static healthImplicationsHazardousPollution() { return 'Health alert: everyone may experience more serious health effects.' }
+
+    static cautionaryStatementHazardousPollution() { return 'Everyone should avoid all outdoor exertion' }
+
+
+
+
 }
 
