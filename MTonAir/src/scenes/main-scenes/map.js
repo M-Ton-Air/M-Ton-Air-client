@@ -191,7 +191,7 @@ const Map = ({ navigation}) =>
                             identifier={String(aqicnCurrentData.station.idStation)}
                             coordinate=
                             {{
-                                // TODO INTO OUR DATABASE, LAT / LONG ARE INVERTED //
+                                // INTO OUR DATABASE, LAT / LONG ARE INVERTED //
                                 latitude:aqicnCurrentData.station.longitude,
                                 longitude:aqicnCurrentData.station.latitude
                             }}

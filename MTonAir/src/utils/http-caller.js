@@ -27,6 +27,30 @@ export default class HttpCaller
     /**
      * 
      * @param {String} url 
+     * @param {String} jwt 
+     * @param {Function} callback 
+     */
+    static delete(url, jwt, callback)
+    {
+        fetch(url, 
+        {
+            method: 'DELETE',
+            headers:{
+                Accept: 'application/json',
+                'Content-Type' : "application/json",
+                'Authorization': 'Bearer ' + jwt
+            },
+        }).then((response) => response.json())
+        .then( (data) => 
+        {
+            callback(data);
+        })
+        .catch((error) => console.warn(error));
+    }
+
+    /**
+     * 
+     * @param {String} url 
      * @param {String} body 
      * @param {String} jwt
      * @param {Function} callback

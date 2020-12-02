@@ -21,12 +21,6 @@ const MTonAirApp = () =>
     <NavigationContainer>
         <Stack.Navigator>
 
-            {/* DEV PURPOSES */}
-            {/* ********************************************************** */}
-            {/* REMOVE IN PRODUCTION */}
-            {/* DEV */}
-            <Stack.Screen name="Home" component={Home} options={{headerShown:false}}/>
-
             {/* Landing Page */}
             {/* TODO : NAVIGATE USER INSTANTLY TO MAP IF LOCAL STORAGE CONTAINS ITS INFORMATION = auto login user
             if he already logged in once */ }
@@ -48,7 +42,8 @@ const MTonAirApp = () =>
 
             {/* stack main screen wrapper -> contains all the app pages cf wireframe */}
             {/* PROD */}
-            {/* <Stack.Screen name="Home" component={Home} options={{title:'Home', headerShown:false}}/>  */}
+            {/* ********************************************************** */}
+             <Stack.Screen name="Home" component={Home} options={{title:'Home', headerShown:false}}/> 
 
 
         </Stack.Navigator>

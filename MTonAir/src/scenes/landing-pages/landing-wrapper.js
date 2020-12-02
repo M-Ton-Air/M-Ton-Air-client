@@ -48,9 +48,8 @@ const LandingWrapper = ({navigation}) =>
                            title = {StringResources.readyTitle()}
                            text={StringResources.readyText()}
                            isLast={true}
-                           navigation={navigation}
-                           nextPage={null/* //TODO make next page = location access (because user clicked SKIP) with
-                           a global.user in param that is a custom "everybody" user*/}/>
+                           navigation={navigation}/>
+
         } />
   </Tab.Navigator>
 );

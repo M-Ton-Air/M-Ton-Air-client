@@ -1,6 +1,6 @@
 import { UserService } from 'mta_services/index';
 import React from 'react';
-import { View, Image, Text } from 'react-native';
+import { View, Image, Text, TouchableNativeFeedback } from 'react-native';
 import { ListItem, Avatar } from 'react-native-elements';
 import { NavigationScreenProp } from 'react-navigation';
 import global from 'mta_utils/global';
@@ -9,11 +9,16 @@ import imgPaths from 'mta_assets/img/img-paths';
 import { ScrollView } from 'react-native-gesture-handler';
 import homeStyles from 'mta_styles/home-styles';
 import { MtaLogo } from 'mta_components/';
+import { Colors } from 'mta_assets/index';
+import { Icon } from 'react-native-elements';
 
 const FavoriteStations = ({navigation}) => 
 {
     /**@type {NavigationScreenProp} */
     const _navigation = navigation;
+
+    /**@type {UserService} */
+    const userService = new UserService(global.user);
 
     const onFirstLoading = false;
 
@@ -22,32 +27,30 @@ const FavoriteStations = ({navigation}) =>
     /** @type {[aqicnData, setAqicnData]} */
     const [aqicnData, setAqicnData] = React.useState(null);
 
+    /** @typedef {Array} list */
+    /** @typedef {Function} setList */
+    /** @type {[list, setList]} */
     const [list, setList] = React.useState(null);
     
     React.useEffect(() => 
     {
         //onLoading
-        let onFirstLoading = true;
         fetchFavoriteStations();
 
         //onTabFocus events
         const unsubscribe = navigation.addListener('focus', () => {
-            if(onFirstLoading)
-            {
-                onFirstLoading = false;
-                return unsubscribe;
-            }
             fetchFavoriteStations();
+            return unsubscribe;
         });
-        return unsubscribe;
     }, [navigation]);
 
 
     const fetchFavoriteStations = () =>
     {
-        let service = new UserService(global.user);
-        service.getFavoriteStations( (data) =>
+        userService.getFavoriteStations( (data) =>
         {
+            // sorts aqi by ascending order
+            data.sort((a, b) => b.airQuality - a.airQuality);
             setAqicnData(data);
             initializeList(data);
         });
@@ -60,6 +63,11 @@ const FavoriteStations = ({navigation}) =>
         {
             /** @type {AqicnDataEntity} */
             let currentAqicnData = data[i];
+            let aqiColor = AqicnDataEntity.aqiToHexadecimalColor(currentAqicnData.airQuality);
+            if(aqiColor === Colors.getModerate())
+            {
+                aqiColor = '#f0d400';
+            }
             newList.push(
             {
                id:currentAqicnData.station.idStation,
@@ -68,16 +76,38 @@ const FavoriteStations = ({navigation}) =>
                iso2:currentAqicnData.station.iso2,
                aqi:currentAqicnData.airQuality,
                aqi_word:AqicnDataEntity.aqiToText(currentAqicnData.airQuality),
-               aqi_color:AqicnDataEntity.aqiToHexadecimalColor(currentAqicnData.airQuality),
+               aqi_color:aqiColor,
                temp: currentAqicnData.temperature,
+               dominent: currentAqicnData.dominentMeasure,
                pm2_5: currentAqicnData.pm25,
-               humidity:currentAqicnData.humidity
+               humidity:currentAqicnData.humidity,
+               no2: currentAqicnData.no2,
+               pm10: currentAqicnData.pm10,
+               o3: currentAqicnData.o3,
+               pressure:currentAqicnData.pressure,
+               wind:currentAqicnData.wind
             });
         }
         if(data.length != 0)
         {
             setList(newList);
         }
+    }
+
+    const handleDelete = (stationId) =>
+    {
+        //removes from UI
+        let filtered = list.filter( (value, index, arr) =>
+        {
+            return value.id != stationId;
+        });
+        setList(filtered);
+
+        //remove from DB
+        userService.deleteFavoriteStation(stationId, (data) =>
+        {
+            console.log(data);
+        })
     }
 
 
@@ -89,21 +119,39 @@ const FavoriteStations = ({navigation}) =>
                 <ListItem 
                     key={i} 
                     bottomDivider={true}>
+
                     <ListItem.Content>
-                        <Image source={imgPaths['flag_' + l.iso2.toLowerCase()]}
-                            style={homeStyles.favFlag}
-                        />
-                        <ListItem.Title style={homeStyles.favStationTitle}>{l.stationName}{', '}{l.country}</ListItem.Title>
+                    <TouchableNativeFeedback onPress={() => handleDelete(l.id)}>
+
+                        <View style={{flexDirection:'row-reverse', alignSelf:'flex-end', marginBottom:1}}>
+                            <Icon 
+                                name='close'
+                                type='ant-design' 
+                                color='#000'
+                                size={16}/>
+                        </View>
+                    </TouchableNativeFeedback>
+
+                        <View style={{flexDirection:'row'}}>
+                            <Image source={imgPaths['flag_' + l.iso2.toLowerCase()]}
+                                style={homeStyles.favFlag}
+                            />
+                            <ListItem.Title style={homeStyles.favStationTitle}>
+                                {l.stationName}{', '}{l.country}
+                            </ListItem.Title>
+                        </View>
                         <View style={homeStyles.favAqiContainer}>
                         <Text style=
                         {{
                             backgroundColor:l.aqi_color,
                             alignItems:'flex-start',
                             width:40,
-                            fontFamily:'Product-Sans-Regular',
+                            fontFamily:'Product-Sans-Bold',
+                            color:'#fff',
                             textAlign:'center',
-                                alignContent:'center',
-                                alignItems:'center',
+                            alignContent:'center',
+                            alignItems:'center',
+                            
                         }}>
                             {l.aqi} 
                             </Text>
@@ -112,27 +160,25 @@ const FavoriteStations = ({navigation}) =>
                                 color:l.aqi_color,
                                 fontFamily:'Product-Sans-Bold'
                             }}>
-                            {'   '} {l.aqi_word}
+                            {'  '} {l.aqi_word}
                             </Text>
                             {
                                 l.temp != null ?
                                 <Text style={homeStyles.favStationDetail}>
-                                    {'   '} {l.temp + '°C'}
+                                    {'  '} {Math.round(l.temp) + '°C'}
                                 </Text> : false
                             }
                             {
-                                isNaN(l.pm2_5) ?
+                                l.dominent != null ?
                                 <Text style={homeStyles.favStationDetail}>
-                                    {'    '} {'pm25 : ' + l.pm25}
-                                </Text> : false
-                            }
-                            {
-                                l.humidity != null ?
-                                <Text style={homeStyles.favStationDetail}>
-                                    {'    '} {'humidity: ' + l.humidity + '%'}
+                                    {'   -  '} {'Main polluant : '}
+                                    <Text style={{fontFamily:'Product-Sans-Bold'}}>
+                                        {l.dominent}
+                                    </Text>
                                 </Text> : false
                             }
                         </View>
+
                     </ListItem.Content>
                 </ListItem>
             )) :  

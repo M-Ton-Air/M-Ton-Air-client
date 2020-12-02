@@ -95,7 +95,8 @@ export default StyleSheet.create({
     favStationTitle:
     {
       fontFamily:'Product-Sans-Regular',
-      fontSize:18
+      fontSize:18,
+      marginLeft:6
     },
     favStationDetail:
     {

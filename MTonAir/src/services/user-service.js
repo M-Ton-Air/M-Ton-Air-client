@@ -52,6 +52,12 @@ export default class UserService
         HttpCaller.postWithJwt(url, '', this.userEntity.jwt, callback);
     }
 
+    deleteFavoriteStation(stationId, callback)
+    {
+        let url = ServerConfig.host() + ServerEndpoints.deleteFavoriteStation(this.userEntity.id, stationId);
+        HttpCaller.delete(url, this.userEntity.jwt, callback);
+    }
+
     /**
      * 
      * @param {Function} callback. The callback function that needs one parameter : An array of AqicnDataEntities.
@@ -124,16 +130,6 @@ export default class UserService
         }
 
         return true;
-    }
-
-    /**
-     * Returns true if the given userEntity respects all the constraints
-     * for login (sign in). False otherwise.
-     * @param {UserEntity} userEntity 
-     */
-    static isUserEntityOkForLogin(userEntity)
-    {
-        // TODO
     }
 
     /**
