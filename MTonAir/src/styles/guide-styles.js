@@ -11,9 +11,10 @@ export default StyleSheet.create({
     },
 
     text: {
-        margin: 6,
+        margin: 8,
         fontFamily: 'Product-Sans-Regular',
-        fontSize: 16
+        fontSize: 16,
+        textAlign: "justify"
     },
 
     textTitle: { 
@@ -21,8 +22,15 @@ export default StyleSheet.create({
         textAlign: "center", 
         color: '#0093FF',
         fontWeight: 'bold', 
-        textAlign: 'center', 
         fontSize: 30,
+        fontFamily: 'Product-Sans-Regular'
+    },
+
+    textSubTitle: { 
+        margin: 6, 
+        color: '#0093FF',
+        fontWeight: 'bold', 
+        fontSize: 18,
         fontFamily: 'Product-Sans-Regular'
     },
 
