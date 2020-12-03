@@ -26,7 +26,7 @@ const Home = () =>
         <Tab.Navigator
             tabBarPosition={'bottom'}
             initialRouteName="Guide"
-            backBehavior='none'
+            backBehavior='initialRoute'
             tabBarOptions= 
             {{
                 labelStyle: 

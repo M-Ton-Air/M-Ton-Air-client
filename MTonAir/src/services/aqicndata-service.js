@@ -29,7 +29,7 @@ export default class AqicnDataService
         {
             let aqicnData = [];
             // TODO : PROD : REMOVE LIMIT
-            for(let i = 0; i < /*data.length*/200; i++)
+            for(let i = 0; i < data.length; i++)
             {
                 /** @type {AqicnDataEntity} */
                 let aqicnDataEntity = data[i];

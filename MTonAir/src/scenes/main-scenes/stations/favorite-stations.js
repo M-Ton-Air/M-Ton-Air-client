@@ -70,9 +70,12 @@ const FavoriteStations = ({navigation}) =>
             }
             newList.push(
             {
-               id:currentAqicnData.station.idStation,
+               id: Math.round(currentAqicnData.station.idStation),
                stationName:currentAqicnData.station.stationName,
                country:currentAqicnData.station.country,
+               sub1:currentAqicnData.station.subdivision1,
+               sub2:currentAqicnData.station.subdivision2,
+               sub3:currentAqicnData.station.subdivision3,
                iso2:currentAqicnData.station.iso2,
                aqi:currentAqicnData.airQuality,
                aqi_word:AqicnDataEntity.aqiToText(currentAqicnData.airQuality),
@@ -118,7 +121,8 @@ const FavoriteStations = ({navigation}) =>
             list.map((l, i) =>(
                 <ListItem 
                     key={i} 
-                    bottomDivider={true}>
+                    bottomDivider={true}
+                    onPress={() => navigation.navigate('StationDetails', {listObject:l})}>
 
                     <ListItem.Content>
                     <TouchableNativeFeedback onPress={() => handleDelete(l.id)}>
@@ -165,7 +169,7 @@ const FavoriteStations = ({navigation}) =>
                             {
                                 l.temp != null ?
                                 <Text style={homeStyles.favStationDetail}>
-                                    {'  '} {Math.round(l.temp) + '°C'}
+                                    {'  '} {l.temp + '°C'}
                                 </Text> : false
                             }
                             {
