@@ -32,10 +32,11 @@ export default class Guide extends React.Component
         return (
             <View style={guideStyles.container}>
                 <ScrollView horizontal = {false}>
-
                 <MtaLogoXSmall/>
+                
+                    <Text style= {guideStyles.textTitle}>Air Quality Guide</Text>
 
-                    <Text style= {guideStyles.textTitle}>{StringResources.guideTitle()}</Text>
+                    <Text style= {guideStyles.textSubTitle}>{"\n"}{StringResources.guideTitle()}</Text>
 
                     <Text style= {guideStyles.text}>{StringResources.firstLine()} {"\n"}</Text>
 
@@ -49,8 +50,17 @@ export default class Guide extends React.Component
                         <Row data={state.tableDataHazardous} style= {guideStyles.hazardous} textStyle={guideStyles.textWhite}/>                    
                     </Table>
 
+                    <Text style= {guideStyles.textSubTitle}>{"\n"}Difference between PM10 and PM2.5 </Text>
+                    <Text style= {guideStyles.text}>{StringResources.differenceBetweenPM10AndPM25()} {"\n"}</Text>
+
+                    <Text style= {guideStyles.textSubTitle}>NO2 </Text>
+                    <Text style= {guideStyles.text}>{StringResources.informationsAboutNO2()} {"\n"}</Text>
+
+                    <Text style= {guideStyles.textSubTitle}>O3 </Text>
+                    <Text style= {guideStyles.text}>{StringResources.informationsAboutO3()} {"\n"}</Text>
+
                     <Text style= {guideStyles.text}>
-                      {"\n"} To know more about Air Quality and Pollution, check the {' '}
+                      {"\n"}To know more about Air Quality and Pollution, check the {' '}
                       <Text style={guideStyles.hyperLink}
                          onPress={() => Linking.openURL(StringResources.urlWikipediaAirQualityTopic())}>
                            wikipedia Air Quality Topic

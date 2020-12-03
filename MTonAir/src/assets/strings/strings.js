@@ -66,5 +66,27 @@ export default class StringResources
 
     static urlAirnowGuideToAirQualityAndYourHealth() { return 'https://www.airnow.gov/aqi/aqi-basics/' } 
 
+    static differenceBetweenPM10AndPM25() {
+        return 'PM10 and PM2.5 often derive from different emissions sources, and also have different chemical compositions. ' +
+        'Emissions from combustion of gasoline, oil, diesel fuel or wood produce much of the PM2.5 pollution found in outdoor air, ' +
+        'as well as a significant proportion of PM10. PM10 also includes dust from construction sites, landfills and agriculture, ' +
+        'wildfires and brush/waste burning, industrial sources, wind-blown dust from open lands, pollen and fragments of bacteria.'
+    }
+
+    static informationsAboutNO2() {
+        return 'Nitrogen Dioxide (NO2) is one of a group of highly reactive gases known as oxides of nitrogen or nitrogen oxides (NOx). ' +
+        'Other nitrogen oxides include nitrous acid and nitric acid. NO2 is used as the indicator for the larger group of nitrogen oxides. \n' +
+        'NO2 primarily gets in the air from the burning of fuel. NO2 forms from emissions from cars, trucks and buses, power plants, and off-road equipment.'
+    }
+
+    static informationsAboutO3() {
+        return "Ozone precursors are a group of pollutants, predominantly those emitted during the combustion of fossil fuels. " +
+        "Ground-level ozone pollution (tropospheric ozone) is created near the Earth's surface by the action of daylight UV rays on these precursors. " +
+        "The ozone at ground level is primarily from fossil fuel precursors, but methane is a natural precursor, and the very low natural background level of ozone " +
+        "at ground level is considered safe. \n" +
+        "Exposure to ozone (and the pollutants that produce it) is linked to premature death, asthma, bronchitis, heart attack, and other cardiopulmonary problems." +
+        "Long-term exposure to ozone has been shown to increase risk of death from respiratory illness."
+    }
+
 }
 
