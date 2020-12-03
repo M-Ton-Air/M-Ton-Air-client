@@ -47,3 +47,6 @@ in another command window.
 
 Then, the app should start in your virtual device. Press the R key twice or select `Reload` from the Developer Menu (`CTRL + M`) to see the changes.
 Read the [React Native Documentation](https://reactnative.dev/docs/environment-setup), "environment setup" section for any more help.
+
+
+You'll also have to start the MTonAir server on localhost 8080 and to insert your Maps API KEY into the Android Manifest : https://github.com/M-Ton-Air/M-Ton-Air-client/blob/master/MTonAir/android/app/src/main/AndroidManifest.xml
