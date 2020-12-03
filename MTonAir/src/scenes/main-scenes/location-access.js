@@ -28,7 +28,6 @@ const LocationAccess = ({route, navigation}) =>
     /** @type {UserEntity} */
     //TODO RETRIEVE USER IN ANOTHER WAY + local storage
     const user = global.user;
-    console.log(user);
 
     const handleGrantLocationAccess =  async () =>
     {

@@ -61,6 +61,13 @@ export default class StationEntity
         this.getSubdivisionSpacer(stationEntity.subdivision3) + stationEntity.subdivision3;
     }
 
+    static getConcatenatedSubdivisions(stationEntity)
+    {
+        return stationEntity.subdivision1?? + 
+        this.getSubdivisionSpacer(stationEntity.subdivision2) + stationEntity.subdivision2?? +
+        this.getSubdivisionSpacer(stationEntity.subdivision3) + stationEntity.subdivision3;
+    }
+
     /** @param {String} subdivision */
     static getSubdivisionSpacer(subdivision)
     {

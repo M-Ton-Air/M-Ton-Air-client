@@ -107,4 +107,25 @@ export default StyleSheet.create({
       marginTop:5, 
       flexDirection:'row'
     },
+    addContainer:
+    {
+      width:'100%',
+      height:73,
+      backgroundColor:'#FFFFFF',
+      marginTop:20,
+      marginBottom:30,
+      alignItems:"flex-start",
+      paddingLeft:10,
+      borderRadius:5,
+      marginBottom:30,
+      flexDirection:'row'
+    },
+    addText:
+    {
+      alignSelf:'center',
+      fontFamily:'Product-Sans-Regular',
+      fontSize:16,
+      color:'#aaaaaa',
+      marginLeft:10
+    }
 });

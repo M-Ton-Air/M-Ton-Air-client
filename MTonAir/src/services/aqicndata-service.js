@@ -27,7 +27,6 @@ export default class AqicnDataService
     {
         this.getWithJwt(ServerConfig.host() + ServerEndpoints.getAllAqicnData(), (data) =>
         {
-            //console.log(data[1]);
             let aqicnData = [];
             // TODO : PROD : REMOVE LIMIT
             for(let i = 0; i < /*data.length*/200; i++)

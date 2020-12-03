@@ -58,6 +58,22 @@ export default class UserService
         HttpCaller.delete(url, this.userEntity.jwt, callback);
     }
 
+    getFavoriteStationsOnly(callback)
+    {
+        let url = ServerConfig.host() + ServerEndpoints.getFavoriteStationsOnly(this.userEntity.id);
+        HttpCaller.get(url, this.userEntity.jwt, (data) =>
+        {
+            // TODO : REFACTOR WITH aqicndata-service.js 
+            /** @type {Array<StationEntity>} */
+            let stations = [];
+            for(let i = 0; i < data.length; i++)
+            {
+                stations.push(data[i]);
+            }
+            callback(stations);
+        });
+    }
+
     /**
      * 
      * @param {Function} callback. The callback function that needs one parameter : An array of AqicnDataEntities.

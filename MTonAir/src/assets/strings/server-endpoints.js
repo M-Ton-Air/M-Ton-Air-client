@@ -14,10 +14,18 @@ export default class ServerEndpoints
     static getStationBySubdivision(subdivision) { return 'stations/by-subdivision/' + subdivision; }
     /**  @param {String} stationName the partial subdivision (region/city) name */
     static getStationBySubdivision(stationName) { return 'stations/by-name/' + stationName; }
+    /**
+     * 
+     * @param {*} anything country, subdivision (region), city or station name.
+     * @param {*} limit the number of results to be returned.
+     */
+    static getStationByAll(anything, limit){ return 'stations/by-all/' + anything +'/' + limit; }
 
     /* Favorites */
     /** @param {Number} idUser the user id */
     static getFavoriteStationsData(idUser){return 'users/' + idUser + '/favorite-station';}
+    /** @param {Number} idUser the user id */
+    static getFavoriteStationsOnly(idUser){return 'users/' + idUser + '/favorite-station/stations-only';}
     /** 
      * @param {Number} idUser the user id
      * @param {Number} idStation  the station id

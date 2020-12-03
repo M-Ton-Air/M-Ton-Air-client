@@ -46,7 +46,6 @@ const SignIn = ({navigation}) =>
         let userService = new UserService(user);
         userService.login( async (data) =>
         {
-            console.log(data);
             let response = JSON.parse(data)
             if(parseInt(response.statusCode) == 200)
             {

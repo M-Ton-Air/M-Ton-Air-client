@@ -1,7 +1,7 @@
 import { UserService } from 'mta_services/index';
 import React from 'react';
 import { View, Image, Text, TouchableNativeFeedback } from 'react-native';
-import { ListItem, Avatar } from 'react-native-elements';
+import { ListItem } from 'react-native-elements';
 import { NavigationScreenProp } from 'react-navigation';
 import global from 'mta_utils/global';
 import { AqicnDataEntity } from 'mta_models/index';
@@ -49,7 +49,7 @@ const FavoriteStations = ({navigation}) =>
     {
         userService.getFavoriteStations( (data) =>
         {
-            // sorts aqi by ascending order
+            // sorts aqi by desc order
             data.sort((a, b) => b.airQuality - a.airQuality);
             setAqicnData(data);
             initializeList(data);
@@ -191,12 +191,16 @@ const FavoriteStations = ({navigation}) =>
                 </View>
             </View>
         }
-        <View>
-        {/*// TODO : ADD BUTTON 'add a favorite station' THAT WILL OPEN THE SEARCH TAB */}
-            <Text>
-                MY BUTTON
-            </Text>
-        </View>
+
+        <TouchableNativeFeedback onPress={() => navigation.navigate("Search")}>
+            <View style={homeStyles.addContainer} elevation={6} >
+                <Icon name='add-circle' type='ionicons' size={70} color='#ebebeb'/>
+                <Text style={homeStyles.addText}>
+                    Add a new station...
+                </Text>
+            </View>
+        </TouchableNativeFeedback>
+
         </ScrollView>
 
     );

@@ -1,7 +1,5 @@
 import React from 'react';
 import { Text, View, StyleSheet, ScrollView, Linking } from 'react-native';
-import { NavigationScreenProp } from 'react-navigation';
-import {WebView} from 'react-native-webview';
 import { Table, TableWrapper, Row, Rows, Col, Cols, Cell } from 'react-native-table-component';
 import {StringResources} from 'mta_assets/index';
 import guideStyles from 'mta_styles/guide-styles';
