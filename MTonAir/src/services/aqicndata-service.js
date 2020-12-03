@@ -28,7 +28,6 @@ export default class AqicnDataService
         this.getWithJwt(ServerConfig.host() + ServerEndpoints.getAllAqicnData(), (data) =>
         {
             let aqicnData = [];
-            // TODO : PROD : REMOVE LIMIT
             for(let i = 0; i < data.length; i++)
             {
                 /** @type {AqicnDataEntity} */
